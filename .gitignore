@@ -1,0 +1,13 @@
+# Build output (anywhere in repo)
+**/bin/
+**/obj/
+
+# Compiled files
+*.exe
+*.dll
+*.pdb
+
+# Visual Studio junk
+.vs/
+*.user
+*.suo
