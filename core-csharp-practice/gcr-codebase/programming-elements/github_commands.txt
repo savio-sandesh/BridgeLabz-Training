@@ -1,0 +1,82 @@
+START
+  |
+  v
+Set identity?
+  |
+  |-- git config --global user.name "savio-sandesh"
+  |-- git config --global user.email "sandesh.cse00@gmail.com"
+  |
+  v
+Initialize repo
+  |
+  |-- git init
+  |
+  v
+Add files
+  |
+  |-- git add .
+  |
+  v
+Embedded repo warning?
+  |
+  |-- YES → inner .git exists
+  |        |
+  |        |-- rmdir /s /q core-csharp-practice\.git
+  |        |
+  |        |-- git add .
+  |
+  |-- NO → continue
+  |
+  v
+Commit changes
+  |
+  |-- git commit -m "Add core csharp practice files"
+  |
+  v
+Check status
+  |
+  |-- git status
+  |     |
+  |     |-- "working tree clean" → OK
+  |
+  v
+Create / switch branch
+  |
+  |-- git branch core-csharp-practice
+  |-- git checkout core-csharp-practice
+  |
+  v
+Push branch
+  |
+  |-- git push -u origin core-csharp-practice
+  |
+  v
+Error: origin not found?
+  |
+  |-- YES
+  |     |
+  |     |-- git remote -v  (nothing shown)
+  |     |
+  |     |-- git remote add origin <GitHub-URL>
+  |
+  v
+Push again
+  |
+  |-- git push -u origin core-csharp-practice
+  |
+  v
+Error: Repository not found?
+  |
+  |-- YES → wrong URL / USERNAME placeholder
+  |     |
+  |     |-- git remote set-url origin https://github.com/REAL-USERNAME/BridgeLabz-Training.git
+  |
+  v
+Final push
+  |
+  |-- git push -u origin core-csharp-practice
+  |
+  v
+SUCCESS 🎉
+  |
+END
