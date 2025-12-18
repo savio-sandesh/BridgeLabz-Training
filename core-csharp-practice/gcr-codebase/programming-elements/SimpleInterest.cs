@@ -1,10 +1,11 @@
 using System;
 
 class SimpleInterest{
-		static void main(){
-		float p=2700;
-		float r=2.5;
-		float t=2;
+		static void Main(string[] args)
+{
+		float p=2700f;
+		float r=2.5f;
+		float t=2f;
 		
 		float si=p*r*t/100;
 		
