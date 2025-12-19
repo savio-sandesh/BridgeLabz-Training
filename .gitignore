@@ -3,7 +3,6 @@
 **/obj/
 
 # Compiled files
-*.exe
 *.dll
 *.pdb
 
