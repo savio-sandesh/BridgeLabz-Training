@@ -14,6 +14,5 @@ class LeapYearUsingSingleIf{
 		else{
 			Console.WriteLine(year + " is not a Leap Year.");
 			}
-			
 	}
 }
