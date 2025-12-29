@@ -5,21 +5,21 @@
 ## 📅 Day-1
 
 ### 🧠 Concepts Learned
-**💻 High-level vs Low-level Languages** – abstraction, performance & portability  
-**🔁 Compiler vs Interpreter** – how code is translated & executed  
-**⚙️ .NET Ecosystem Basics** – .NET SDK, CLR, CIL (IL) overview  
-**🏗️ CLR Architecture** – source code → IL → JIT → native code  
+**💻 High-level vs Low-level Languages** – abstraction, performance, and portability  
+**🔁 Compiler vs Interpreter** – code translation and execution flow  
+**⚙️ .NET Ecosystem Basics** – .NET SDK, CLR, and IL overview  
+**🏗️ CLR Architecture** – source code → IL → JIT → native execution  
 
 ### 🧪 C# Fundamentals
-**👋 Hello World in C#** – program structure & entry point  
-**🧱 Classes & Objects** – basics of OOP  
+**👋 Hello World in C#** – program structure and entry point  
+**🧱 Classes & Objects** – object-oriented programming basics  
 **🧾 Data Types & Naming Conventions** – clean and readable code  
 
 ### 🌱 Tools & Workflow
 **🧰 Git & GitHub Basics** – init, add, commit, push  
-**🗂️ Version Control Hygiene** – tracking changes the right way  
+**🗂️ Version Control Hygiene** – tracking changes effectively  
 
-📌 *Progress:* Strong foundation set for .NET full-stack journey.
+📌 *Progress:* Built a strong foundation in .NET execution and basic C# syntax.
 
 ---
 
@@ -29,9 +29,9 @@
 **📌 Static Keyword** – shared members across all instances  
 **🏷️ Static Variables** – single copy per class  
 **⚙️ Static Methods** – callable without object creation  
-**🏗️ Static Constructors** – executed once when class loads  
-**🧩 Static Classes & Nested Classes** – utility-style design  
-**🧠 Static vs Non-static Context** – access rules & memory behavior  
+**🏗️ Static Constructors** – executed once during class loading  
+**🧩 Static & Nested Classes** – utility-style and structured design  
+**🧠 Static vs Non-static Context** – access rules and memory behavior  
 
 ### ➗ Operators in C#
 **➕ Arithmetic Operators** – `+ - * / %`  
@@ -40,18 +40,18 @@
 **📝 Assignment Operators** – `= += -= *= /= %=`  
 **🔁 Unary Operators** – `++ -- !`  
 **🧮 Bitwise Operators** – `& | ^ ~ << >>`  
-**❓ Ternary Operator** – concise `if-else` logic  
+**❓ Ternary Operator** – concise conditional logic  
 **🧪 is Operator** – runtime type checking  
 
 ### 🧪 Programming Elements Practiced
-**💬 Comments** – single-line & multi-line  
+**💬 Comments** – single-line and multi-line  
 **📦 Variables & Data Types** – `int`, `double`, `char`, `string`  
-**✍️ Naming Conventions** – meaningful & readable identifiers  
-**🔄 Operator Precedence** – BODMAS/PEMDAS  
-**🔀 Type Conversion** – implicit vs explicit casting  
+**✍️ Naming Conventions** – meaningful identifiers  
+**🔄 Operator Precedence** – BODMAS / PEMDAS  
+**🔀 Type Conversion** – implicit and explicit casting  
 **⌨️ User Input** – reading and processing input values  
 
-📌 *Progress:* Solid grip on C# building blocks and execution behavior.
+📌 *Progress:* Achieved clarity in C# language constructs and execution behavior.
 
 ---
 
@@ -60,38 +60,175 @@
 ### 🧪 Assignment-Based Practice (Hands-on)
 
 **📘 Programming Elements – Level 1**
-- Display student result using variables (name, roll no, marks, result)
-- Travel computation program (distance & time calculation)
-- Age calculation using birth year
-- Average marks calculation (PCM)
-- Unit conversions (km → miles, cm → feet & inches)
-- Profit & loss calculation with percentage
-- Division & modulus based problems (pens, chocolates)
-- Fee discount calculation (static values & user input)
-- Volume of Earth calculation (km³ & miles³)
-- Basic calculator (add, subtract, multiply, divide)
-- Triangle area calculation
-- Square side calculation using perimeter
-- Handshake problem using mathematical formula
+- Student result display using variables  
+- Travel computation (distance and time)  
+- Age calculation using birth year  
+- Average marks calculation  
+- Unit conversions (km → miles, cm → feet & inches)  
+- Profit and loss calculation with percentage  
+- Division and modulus-based problems  
+- Fee discount calculation  
+- Volume of Earth calculation  
+- Basic calculator operations  
+- Triangle area and square side calculation  
+- Handshake problem using mathematical logic  
 
 **📗 Programming Elements – Level 2**
-- Quotient & remainder using division and modulus
-- Integer & double operations with operator precedence
-- Temperature conversion (Celsius ↔ Fahrenheit)
-- Salary + bonus income calculation
-- Swapping two numbers
-- Travel computation using user inputs
-- Athlete running rounds problem (perimeter-based logic)
-- Simple Interest calculation
-- Weight conversion (pounds → kilograms)
+- Quotient and remainder calculation  
+- Operator precedence-based arithmetic  
+- Temperature conversion (Celsius ↔ Fahrenheit)  
+- Salary and bonus computation  
+- Swapping two numbers  
+- Travel computation using user input  
+- Athlete running rounds problem  
+- Simple interest calculation  
+- Weight conversion (pounds → kilograms)  
 
 ### 🧠 Skills Strengthened
-- **Variables & Data Types**
-- **User Input Handling**
-- **Arithmetic & Logical Operators**
-- **Operator Precedence**
-- **Mathematical Logic Building**
-- **Clean Code Practices & Indentation**
+- Variable and data handling  
+- User input validation  
+- Arithmetic and logical reasoning  
+- Mathematical problem solving  
+- Clean code structure and indentation  
 
-📌 *Progress:* Strong hands-on confidence gained through problem-solving and real-world logic implementation.
+📌 *Progress:* Strong confidence gained through real-world logic implementation.
 
+---
+
+## 📅 Day-4
+
+### 🧠 Control Flow Statements
+**🔀 Selection Statements** – `if`, `else if`, `else`  
+**🎯 Switch Case** – structured multi-condition handling  
+**🔁 Iteration Statements** – `for`, `while`, `do-while`  
+**⏭️ Jump Statements** – `break`, `continue`, `return`  
+
+### 🧪 Logic Building Practice
+- Solved 30+ problems across difficulty levels  
+- Basic checks: Even/Odd, Leap Year, Voting eligibility  
+- Intermediate logic: Prime numbers, Fibonacci, Factorial  
+- Advanced problems using nested loops and conditions  
+
+📌 *Progress:* Significant improvement in logical thinking and flow control.
+
+---
+
+## 📅 Day-5
+
+### 🧠 Arrays in C#
+**📦 Array Fundamentals** – declaration, initialization, indexing  
+**🧠 Memory Perspective** – contiguous memory allocation  
+**🔁 Traversal Techniques** – `for` vs `foreach`  
+**⚠️ Edge Case Handling** – negative values and empty inputs  
+
+### 🧪 Practical Tasks
+- Finding maximum and minimum values  
+- Reversing arrays  
+- Searching elements  
+- Frequency counting problems  
+- Solved 20+ array-based programs  
+
+📌 *Progress:* Strong understanding of data storage and manipulation.
+
+---
+
+## 📅 Day-6
+
+### 🧠 Methods in C#
+**🧩 Method Structure** – access modifiers, return types, parameters  
+**♻️ DRY Principle** – avoiding repetition using methods  
+**⚙️ Static vs Instance Methods** – memory and invocation differences  
+
+### 🔁 Parameter Passing
+- `ref` – pass by reference  
+- `out` – return multiple values  
+- `params` – variable-length arguments  
+
+### 🧪 Practical Tasks
+- Solved 30+ method-based problems  
+- Refactored earlier programs into reusable methods  
+
+📌 *Progress:* Code became modular, readable, and reusable.
+
+---
+
+## 📅 Day-7
+
+### 🧠 .NET Internals
+**⚙️ IL / CIL / MSIL** – intermediate language concepts  
+**🏗️ CLR Responsibilities** – garbage collection, exception handling, type safety  
+**🚀 JIT Compilation** – runtime native code generation  
+**📦 Assemblies** – DLL vs EXE overview  
+
+### 🧠 Memory Management
+- Value types and stack allocation  
+- Reference types and heap allocation  
+- Object lifecycle and garbage collection  
+
+📌 *Progress:* Clear understanding of runtime execution and memory behavior.
+
+---
+
+## 📅 Day-8
+
+### 🧵 Strings in C#
+**🧠 String Immutability** – memory behavior  
+**✂️ String Operations** – `Split()`, `Substring()`, `Replace()`  
+**⚡ StringBuilder** – performance optimization  
+
+### 🎮 Modular Game Design (Snake & Ladders)
+- Supports 2–4 players  
+- Modular methods:
+  - `RollDice()`  
+  - `MovePlayer()`  
+  - `CheckForSnakeOrLadder()`  
+
+### 🧪 Practical Tasks
+- Solved 20+ string manipulation problems  
+- Designed modular game structure  
+
+📌 *Progress:* Transitioned from writing programs to designing modular applications.
+
+---
+
+## 📅 Day-9
+
+### 🧠 Arrays – Scenario Based Problems
+**🌡️ Temperature Analyzer (Weekly Hourly Data)**  
+**🎓 Student Test Score Management**
+
+### 🧠 Strings – Scenario Based Problems
+**✍️ Sentence Formatter**  
+**📊 Paragraph Text Analyzer**
+
+### 🧠 Programming Paradigms
+**🧩 Procedural Programming**
+- Top-down, step-by-step execution approach  
+- Focus on functions and procedures  
+- Implemented logic using reusable methods  
+
+**🆚 Procedural vs OOP**
+- Functions vs classes as core building blocks  
+- Data security and scalability comparison  
+- Real-world modeling limitations in procedural approach  
+
+### 🧠 Object-Oriented Programming (OOP)
+**🏗️ Class & Object Concepts**
+- Class as a blueprint for objects  
+- Object creation and memory allocation  
+- Attributes, methods, and constructors  
+
+**🧠 OOP Principles Overview**
+- Encapsulation and abstraction  
+- Reusability through inheritance  
+- Polymorphism concepts  
+- Modular and maintainable design  
+
+### 🧪 Programming Practice
+- Student details program using classes and constructors  
+- Travel details program modeling real-world entities  
+- Emphasis on clean class design and method usage  
+
+📌 *Progress:* Shifted from procedural thinking to object-oriented design with real-world modeling.
+
+---
