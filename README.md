@@ -229,6 +229,30 @@
 - Travel details program modeling real-world entities  
 - Emphasis on clean class design and method usage  
 
-📌 *Progress:* Shifted from procedural thinking to object-oriented design with real-world modeling.
-
 ---
+
+## 📅 Day-10
+
+### 🧠 Constructors & Object Initialization
+- Learned constructors as special methods used to initialize objects  
+- Practiced **default**, **parameterized**, and **copy constructors**  
+- Understood **constructor overloading** and automatic invocation using `new`  
+- Implemented a **Coffee Shop Order System** to apply constructor concepts  
+
+
+### 🔐 Access Modifiers in C#
+- Studied `public`, `private`, `protected`, and `internal`  
+- Understood visibility rules and their role in encapsulation  
+
+
+### 🧩 Instance vs Class Members
+- Differentiated **instance variables/methods** and **static (class) members**  
+- Used static variables to track shared data across objects  
+
+
+### 🧠 Scenario-Based Practice
+- **Library Management System**: book search, display, and checkout using arrays and strings  
+- **EduQuiz – Student Quiz Grader**: answer comparison, score calculation, and result evaluation  
+
+📌 *Progress:* Applied OOP, arrays, strings, and methods to real-world problems.
+
