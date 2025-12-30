@@ -19,7 +19,7 @@ namespace BridgeLabzTraining.csharp_extras.practice_problem_2
 
             while (!correctGuess)
             {
-                if (minimum>maximum)
+                if (minimum > maximum)
                 {
                     Console.WriteLine("Inconsistent answers detected.");
                     break;
@@ -32,8 +32,8 @@ namespace BridgeLabzTraining.csharp_extras.practice_problem_2
                 correctGuess = AdjustLimits(userReply, ref minimum, ref maximum, currentGuess);
 
             }
-    
-    }
+
+        }
         static int GenerateGuess(int min, int max)
         {
             return (min + max) / 2;
