@@ -256,3 +256,32 @@
 
 📌 *Progress:* Applied OOP, arrays, strings, and methods to real-world problems.
 
+---
+
+## 📅 Day-11
+
+### 🧠 Strings & Methods (Scenario-Based)
+
+**Invoice Generator**
+- Parsed structured input strings to extract task names and amounts  
+- Calculated total invoice value using method-based logic  
+
+**Methods:** `ParseInvoice()`, `GetTotalAmount()`
+
+### 🏦 Bank Account Manager
+- Designed `BankAccount` class with encapsulated balance handling  
+- Implemented `Deposit()`, `Withdraw()` (with overdraft protection), and `CheckBalance()`
+
+### 🧮 Utility Class – Mathematical Operations
+- Implemented methods for factorial, prime check, GCD, and Fibonacci  
+- Validated logic using edge cases (0, 1, negative inputs)
+
+
+### 🧠 Core C# Keywords
+- **`this`** – resolved instance-level ambiguity and enabled constructor chaining  
+- **`static`** – implemented shared, class-level utility logic  
+- **`sealed`** – enforced inheritance restrictions  
+- **`is`** – ensured safe runtime type checking  
+
+📌 *Progress:* Strengthened method design, string processing, and understanding of core C# language constructs through practical scenarios.
+
