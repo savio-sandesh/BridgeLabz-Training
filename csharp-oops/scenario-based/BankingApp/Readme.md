@@ -69,27 +69,32 @@ This ensures **secure role-based access**.
 
 ---
 
-## 🏗️ Project Structure
+## 🔄 Program Flow (Flowchart)
 
+```
 Start
- └── Login Screen
-     ├── Manager Login
-     │    └── Manager Menu
-     │         ├── Create Customer
-     │         ├── Create Account
-     │         ├── Verify KYC
-     │         ├── Freeze / Unfreeze
-     │         ├── Apply Interest
-     │         └── Close Account
-     │
-     └── Customer Login
-          └── Customer Menu
-               ├── Deposit Money
-               ├── Withdraw Money
-               ├── Check Balance
-               └── Logout
+ ↓
+Login Screen
+ ├── Manager Login
+ │    ↓
+ │  Manager Menu
+ │    ├── Create Customer
+ │    ├── Create Account
+ │    ├── Verify KYC
+ │    ├── Freeze / Unfreeze
+ │    ├── Apply Interest
+ │    └── Close Account
+ │
+ └── Customer Login
+      ↓
+   Customer Menu
+      ├── Deposit Money
+      ├── Withdraw Money
+      └── Check Balance
+      ↓
+   Logout / Exit
 
-
+```
 
 ---
 
@@ -155,33 +160,6 @@ Start
 ✔ Close account  
 
 All operations are validated against **role and account state**.
-
----
-
-## 🔄 Program Flow (Flowchart)
-
-Start
-↓
-Login Screen
-├── Manager Login
-│ ↓
-│ Manager Menu
-│ ├── Create Customer
-│ ├── Create Account
-│ ├── Verify KYC
-│ ├── Freeze / Unfreeze
-│ ├── Apply Interest
-│ └── Close Account
-│
-└── Customer Login
-↓
-Customer Menu
-├── Deposit Money
-├── Withdraw Money
-└── Check Balance
-↓
-Logout / Exit
-
 
 ---
 
