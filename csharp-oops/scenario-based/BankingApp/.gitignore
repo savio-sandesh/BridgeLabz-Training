@@ -1,0 +1,15 @@
+# Ignore build artifacts
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Ignore unrelated parent folders
+../../core-csharp-practice/
+
+# OS files
+Thumbs.db
+.DS_Store
