@@ -285,3 +285,43 @@
 
 📌 *Progress:* Strengthened method design, string processing, and understanding of core C# language constructs through practical scenarios.
 
+---
+
+## 📅 Day-12
+
+### 🧠 Arrays & Methods (Scenario-Based)
+
+**Cafeteria Menu App**
+- Stored fixed menu items using `string[]`
+- Displayed menu with index-based selection
+- Allowed item selection via user input
+- Modularized logic using methods
+
+**Methods Used:**  
+`DisplayMenu()`, `GetItemByIndex()`
+
+### 🧠 Object-Oriented Programming – Class vs Object
+
+- Understood **class** as a blueprint defining structure and behavior  
+- Understood **object** as an instance with actual state and memory allocation  
+- Learned memory allocation:
+  - Class metadata → method area  
+  - Objects → heap memory  
+
+
+### 🏦 Class vs Object (Banking Context)
+- Modeled `BankAccount` as a class with attributes and behaviors
+- Created multiple account objects with independent state
+- Reinforced how shared structure supports unique instances
+
+
+### 🏫 OOP Modeling – School Management System
+- Designed interacting classes: `Student`, `Teacher`, `Course`, `School`
+- Practiced object collaboration and responsibility separation
+- Used collections to manage relationships between objects
+
+### 🧩 UML Basics
+- **Class Diagram:** Represented static structure, attributes, methods, and relationships  
+- **Sequence Diagram:** Represented dynamic interaction and method call flow between objects  
+
+📌 *Progress:* Strengthened understanding of arrays, method modularity, object instantiation, and foundational object-oriented system modeling.
