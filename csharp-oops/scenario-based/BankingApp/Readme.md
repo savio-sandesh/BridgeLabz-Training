@@ -69,17 +69,32 @@ This ensures **secure role-based access**.
 
 ---
 
-## 🏗️ Project Structure
+## 🔄 Program Flow (Flowchart)
 
-BankingApp
-│
-├── Bank.cs // Bank-level details & branch management
-├── Branch.cs // Branch-level account storage
-├── BankAccount.cs // Balance & account state rules
-├── User.cs // Customer identity & KYC state
-├── BankAccountManager.cs // Central authority / service layer
-└── Program.cs // Menu-driven role-based console UI
+```
+Start
+ ↓
+Login Screen
+ ├── Manager Login
+ │    ↓
+ │  Manager Menu
+ │    ├── Create Customer
+ │    ├── Create Account
+ │    ├── Verify KYC
+ │    ├── Freeze / Unfreeze
+ │    ├── Apply Interest
+ │    └── Close Account
+ │
+ └── Customer Login
+      ↓
+   Customer Menu
+      ├── Deposit Money
+      ├── Withdraw Money
+      └── Check Balance
+      ↓
+   Logout / Exit
 
+```
 
 ---
 
@@ -145,33 +160,6 @@ BankingApp
 ✔ Close account  
 
 All operations are validated against **role and account state**.
-
----
-
-## 🔄 Program Flow (Flowchart)
-
-Start
-↓
-Login Screen
-├── Manager Login
-│ ↓
-│ Manager Menu
-│ ├── Create Customer
-│ ├── Create Account
-│ ├── Verify KYC
-│ ├── Freeze / Unfreeze
-│ ├── Apply Interest
-│ └── Close Account
-│
-└── Customer Login
-↓
-Customer Menu
-├── Deposit Money
-├── Withdraw Money
-└── Check Balance
-↓
-Logout / Exit
-
 
 ---
 
