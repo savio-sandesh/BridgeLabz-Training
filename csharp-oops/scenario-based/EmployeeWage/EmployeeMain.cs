@@ -2,12 +2,21 @@
 {
 	internal class EmployeeMain
 	{
-		private IEmployee employeeUtility;
+		private readonly IEmployee employeeUtility;
+
+		public EmployeeMain()
+		{
+			// Create object using interface reference
+			employeeUtility = new EmployeeUtilityImplementation();
+		}
 
 		public void Start()
 		{
-			// Implementation for starting employee wage computation
-			// You can add logic here as needed
+			// UC-2: Get daily wage
+			int dailyWage = employeeUtility.CalculateDailyWage();
+
+			// Display daily wage
+			Console.WriteLine("Daily Employee Wage: " + dailyWage);
 		}
 	}
 }
