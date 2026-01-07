@@ -12,7 +12,9 @@
 		int CalculateEmployeeWageByType();
 
 		// UC-5: Calculate monthly wage for 20 working days
-
 		int CalculateMonthlyWage();
+
+		// UC-6: Calculate wage with maximum working hours and days limit
+		int CalculateWageWithHourAndDayLimit();
 	}
 }
