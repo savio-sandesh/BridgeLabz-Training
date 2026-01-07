@@ -2,17 +2,39 @@
 {
 	internal class EmployeeUtilityImplementation : IEmployee
 	{
-		private static readonly Random _random = new Random();
+		private static readonly Random random = new Random();
 
-		// UC1 - Check Employee is Present or Absent
-		public void CheckAttendance()
+		// UC-1: Check employee attendance
+		public bool CheckAttendance()
 		{
-			int attendance = _random.Next(0, 2);
+			int attendance = random.Next(0, 2);
 
 			if (attendance == 1)
-				Console.WriteLine("Employee is Present");
+			{
+				Console.WriteLine("Attendance Status: Present");
+				return true;
+			}
 			else
-				Console.WriteLine("Employee is Absent");
+			{
+				Console.WriteLine("Attendance Status: Absent");
+				return false;
+			}
+		}
+
+		// UC-2: Calculate daily employee wage
+		public int CalculateDailyWage()
+		{
+			int wagePerHour = 20;
+			int fullDayHours = 8;
+			int dailyWage = 0;
+
+			// Calculate wage only if employee is present
+			if (CheckAttendance())
+			{
+				dailyWage = wagePerHour * fullDayHours;
+			}
+
+			return dailyWage;
 		}
 	}
 }
