@@ -2,70 +2,99 @@
 {
 	internal class EmployeeMenu
 	{
-		private readonly IEmployee employeeService;
-
-		public EmployeeMenu()
-		{
-			employeeService = new EmployeeUtilityImplementation();
-		}
+		private IEmployee employeeService;
+		public bool RequestEmployeeChange { get; private set; }
 
 		public void ShowChoices()
 		{
-			int choice;
+			employeeService = new EmployeeUtilityImplementation();
+			RequestEmployeeChange = false;
 
-			do
+			bool isPresent = false;
+			bool attendanceChecked = false;
+
+			while (true)
 			{
 				Console.WriteLine("\n--- Employee Wage Computation ---");
-				Console.WriteLine("1. UC1 - Check Attendance");
-				Console.WriteLine("2. UC2 - Calculate Daily Wage");
-				Console.WriteLine("3. UC3 - Part Time Employee Wage");
-				Console.WriteLine("4. UC5 - Calculate Monthly Wage (20 Days)");
-				Console.WriteLine("5. UC6 - Wage with Max Hour & Day Limit");
+
+				// Show UC1 only once
+				if (!attendanceChecked)
+				{
+					Console.WriteLine("1. UC1 - Check Attendance");
+				}
+				else if (!isPresent)
+				{
+					Console.WriteLine("(Employee is absent - wage options disabled)");
+				}
+				else
+				{
+					Console.WriteLine("2. UC2 - Calculate Daily Wage");
+					Console.WriteLine("3. UC3 - Part Time Employee Wage");
+					Console.WriteLine("4. UC5 - Calculate Monthly Wage (20 Days)");
+					Console.WriteLine("5. UC6 - Wage with Max Hour & Day Limit");
+				}
+
+				Console.WriteLine("9. Change Employee");
 				Console.WriteLine("0. Exit");
 				Console.Write("Enter Choice: ");
 
-				choice = Convert.ToInt32(Console.ReadLine());
+				int choice = Convert.ToInt32(Console.ReadLine());
 
 				switch (choice)
 				{
 					case 1:
-						// UC-1
-						employeeService.CheckAttendance();
+						if (!attendanceChecked)
+						{
+							isPresent = employeeService.CheckAttendance();
+							attendanceChecked = true;
+						}
+						else
+						{
+							Console.WriteLine("Attendance already checked.");
+						}
 						break;
 
 					case 2:
-						// UC-2
-						int dailyWage = employeeService.CalculateDailyWage();
-						Console.WriteLine("Daily Wage: " + dailyWage);
+						if (attendanceChecked && isPresent)
+							employeeService.CalculateDailyWage();
+						else
+							Console.WriteLine("Wage option not available.");
 						break;
 
 					case 3:
-						// UC-3
-						int partTimeWage = employeeService.CalculateEmployeeWageByType();
-						Console.WriteLine("Employee Wage: " + partTimeWage);
+						if (attendanceChecked && isPresent)
+							employeeService.CalculateEmployeeWageByType();
+						else
+							Console.WriteLine("Wage option not available.");
 						break;
 
 					case 4:
-						// UC-5
-						int monthlyWage = employeeService.CalculateMonthlyWage();
-						Console.WriteLine("Monthly Wage (20 Days): " + monthlyWage);
+						if (attendanceChecked && isPresent)
+							employeeService.CalculateMonthlyWage();
+						else
+							Console.WriteLine("Wage option not available.");
 						break;
 
 					case 5:
-						// UC-6
-						int limitedWage = employeeService.CalculateWageWithHourAndDayLimit();
-						Console.WriteLine("Wage with Hour & Day Limit: " + limitedWage);
+						if (attendanceChecked && isPresent)
+							employeeService.CalculateWageWithHourAndDayLimit();
+						else
+							Console.WriteLine("Wage option not available.");
 						break;
+
+					case 9:
+						RequestEmployeeChange = true;
+						return;
 
 					case 0:
-						Console.WriteLine("Exiting program...");
-						break;
+						Environment.Exit(0);
+						return;
 
 					default:
-						Console.WriteLine("Invalid choice. Please try again.");
+						Console.WriteLine("Invalid choice.");
 						break;
 				}
-			} while (choice != 0);
+			}
 		}
 	}
 }
