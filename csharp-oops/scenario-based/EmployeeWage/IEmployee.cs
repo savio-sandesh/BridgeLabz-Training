@@ -18,3 +18,6 @@
 		int CalculateWageWithHourAndDayLimit();
 	}
 }
+
+// define the contract for all employee-related operations
+// such as attendance check, daily wage, monthly wage, etc.
