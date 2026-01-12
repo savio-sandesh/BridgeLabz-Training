@@ -1,0 +1,25 @@
+# =========================
+# .NET / Visual Studio
+# =========================
+
+# Build artifacts
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Backup / temp files
+*.tmp
+*.bak
