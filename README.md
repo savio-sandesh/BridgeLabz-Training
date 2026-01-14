@@ -325,3 +325,222 @@
 - **Sequence Diagram:** Represented dynamic interaction and method call flow between objects  
 
 📌 *Progress:* Strengthened understanding of arrays, method modularity, object instantiation, and foundational object-oriented system modeling.
+
+---
+
+## 📅 Day-13
+
+### 🧠 Inheritance in C#
+
+- Studied inheritance as a core OOP principle  
+- Understood parent–child class relationships  
+- Implemented single, multilevel, and hierarchical inheritance  
+
+### 🔁 Method Overriding & Polymorphism
+- Used `virtual` and `override` keywords  
+- Applied runtime polymorphism using base class references  
+
+### 🏗️ Constructor Behavior
+- Learned constructor execution order  
+- Used `base()` for parent constructor calls  
+
+### 🔐 Access Modifiers
+- Applied `public`, `protected`, `internal`, and `private`  
+- Controlled member visibility in inheritance  
+
+📌 *Progress:* Built strong foundation in inheritance, overriding, and runtime behavior.
+
+---
+
+## 📅 Day-14
+
+### 🧠 Encapsulation
+
+- Applied data hiding using private fields  
+- Used properties for controlled access  
+- Enforced validation and business rules  
+
+### 🧠 Polymorphism
+
+- Implemented compile-time (overloading)  
+- Implemented runtime (overriding) polymorphism  
+- Used interfaces and abstract classes  
+
+### 🧩 Abstraction
+- Compared abstract classes vs interfaces  
+- Designed loosely coupled systems  
+
+### 🧪 Scenario-Based Design
+- Hospital Patient Management System  
+- Vehicle Rental Application  
+
+📌 *Progress:* Strengthened encapsulation, abstraction, and polymorphic design.
+
+---
+
+## 📅 Day-15
+
+### 🧠 OOP Design – Bird Sanctuary System
+
+- Base class `Bird` with shared attributes  
+- Interfaces: `IFlyable`, `ISwimmable`  
+- Implementations:
+  - Eagle, Sparrow  
+  - Duck, Penguin  
+  - Seagull  
+
+### 🔁 Polymorphism
+- Stored objects in arrays  
+- Used `is` operator to invoke behaviors dynamically  
+
+### 🧠 Scenario-Based Design – Call Log Manager
+- Managed call logs using arrays  
+- Implemented keyword search and time-based filtering  
+
+📌 *Progress:* Applied interfaces, inheritance, arrays, and runtime polymorphism.
+
+---
+
+## 📅 Day-17
+
+### 🧠 Data Structures Overview
+
+- Studied linear, hierarchical, hash-based, and advanced data structures  
+- Compared static vs dynamic memory allocation  
+
+### 🔗 Linked Lists
+- Singly Linked List  
+- Doubly Linked List  
+- Circular Linked List  
+
+### 🧪 Scenario-Based Practice
+- Employee Record Management (SLL)  
+- Playlist Management System (CLL)  
+
+📌 *Progress:* Applied linked lists to dynamic real-world problems.
+
+---
+
+## 📅 Day-18
+
+### 🧠 Stack (LIFO)
+
+- Used `Stack<T>` and core operations  
+- Solved balanced parentheses problem  
+- Analyzed time and space complexity  
+
+### 🧠 Queue (FIFO)
+- Used `Queue<T>` for task scheduling  
+- Studied priority and concurrent queues  
+
+### 🧠 Dictionary (Hash-Based)
+- Implemented fast key-value lookup  
+- Studied hashing and collision handling  
+
+### 🧩 Scenario-Based Design
+- Smart Home Automation System  
+
+📌 *Progress:* Strengthened data structures and algorithmic problem-solving.
+
+---
+
+## 📅 Day-19
+
+### 🧠 OOP Design – FitTrack
+
+- Designed workout tracking system  
+- Implemented interface-based polymorphism  
+
+### 🧠 ATM Dispenser Logic
+- Optimized note distribution  
+- Handled fallback strategies  
+
+### 🧠 Sorting Algorithms
+- Bubble Sort  
+- Insertion Sort  
+- Merge Sort  
+- Quick Sort  
+
+📌 *Progress:* Improved algorithm design and performance analysis skills.
+
+---
+
+## 📅 Day-20
+
+### 🧠 File Handling in C#
+
+- Used `StreamReader` for file and console input  
+- Compared FileStream vs StreamReader  
+
+### 🧠 String vs StringBuilder
+- Compared immutability and performance  
+- Chose based on usage patterns  
+
+### 🧠 Searching & Indexing
+- Linear Search  
+- Binary Search  
+- Dictionary-based indexing  
+
+### 🧠 Optimization Problems
+- Metal Factory Pipe Cutting  
+- Custom Furniture Manufacturing  
+
+### 🧠 System Design – LoanBuddy
+- Applied encapsulation, inheritance, polymorphism  
+- Designed EMI calculation logic  
+
+📌 *Progress:* Integrated file I/O, optimization, searching, and system design.
+
+---
+
+## 📅 Day-21
+
+### 🧠 Runtime Analysis & Big-O
+
+- Studied time and space complexity  
+- Compared best, average, and worst cases  
+
+### ⚙️ Optimization Best Practices
+- Efficient data structure selection  
+- Reduced nested loops  
+- Used built-in optimized libraries  
+
+### 🧪 Scenario-Based Design
+- CinemaTime – Movie Schedule Manager  
+- BookBuddy – Digital Bookshelf App  
+
+📌 *Progress:* Strengthened performance analysis and exception handling.
+
+---
+
+## 📅 Day-22
+
+### 🧠 Case Study – Address Book System
+
+- Designed scalable address book architecture  
+- Modeled Contact and AddressBook entities  
+
+### 🧠 Contact Management Logic
+- Added, updated, and removed contacts  
+- Prevented duplicates using equality logic  
+
+### 📦 Collections & Search
+- Managed multiple address books using dictionary  
+- Searched and grouped contacts by city and state  
+
+### 🔍 Sorting & Analytics
+- Sorted by name, city, state, and zip  
+- Counted contacts by location  
+
+### 💾 Persistence
+- File I/O  
+- CSV and JSON formats  
+- JSON server integration  
+
+### 🌐 Advanced Design
+- Non-blocking I/O  
+- Database persistence  
+- Followed Open–Closed Principle  
+
+📌 *Progress:* Built an extensible, production-style system using OOP, collections, async I/O, and SOLID principles.
+
