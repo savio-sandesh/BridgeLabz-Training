@@ -1,4 +1,4 @@
-# Training Progress
+# Data Structure And Algorithm
 
 ## Day 1 – Data Structures & Linked Lists (C#)
 
@@ -250,4 +250,52 @@
 - File I/O is essential for data persistence
 - Clean OOP structure improves readability and maintenance
 - Early design decisions impact scalability and flexibility
+
+---
+
+## Day 7 – BrowserBuddy: Tab History Manager (Doubly Linked List & Stack)
+
+### Problem Statement
+Develop a console-based browser application that manages multiple tabs and
+maintains browsing history for each tab. The browser must support **Back** and **Forward**
+navigation and allow users to restore recently closed pages.  
+To implement this functionality efficiently, a **Doubly Linked List** is used for page
+navigation and a **Stack** is used to store recently closed pages.
+
+### Topics Covered
+- Application of Doubly Linked List in real-world scenarios
+- Stack data structure and LIFO principle
+- Browser navigation logic (Back and Forward)
+- Tab-based history management
+- Menu-driven console application design
+- Applying OOP principles in C#
+
+### Hands-on Practice
+- Designed and implemented **BrowserBuddy – Tab History Manager**
+- Created support for multiple browser tabs
+- Implemented page navigation within a tab using **Doubly Linked List**
+- Enabled:
+  - Backward navigation
+  - Forward navigation
+- Implemented page visit functionality per tab
+- Stored recently closed pages using **Stack**
+- Restored closed pages using LIFO behavior
+- Displayed current tab and page status
+- Displayed complete browsing history of the active tab
+
+### Data Structures Used
+- **Doubly Linked List**
+  - Maintains page navigation history per tab
+  - Supports efficient back and forward traversal
+- **Stack (Array-based)**
+  - Stores recently closed pages
+  - Enables restoration using LIFO principle
+
+### Key Learnings
+- Doubly Linked Lists are effective for bidirectional navigation systems
+- Stacks are suitable for restoring recently closed items
+- Combining multiple data structures improves system functionality
+- Menu-driven design enhances user interaction in console applications
+- Applying OOP principles results in cleaner and more maintainable code
+
 
