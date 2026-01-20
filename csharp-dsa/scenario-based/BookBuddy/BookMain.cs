@@ -18,10 +18,10 @@
 						Book book = new Book();
 
 						Console.Write("Enter book title: ");
-						string title = Console.ReadLine();
+						string title = Console.ReadLine()!;
 
 						Console.Write("Enter author name: ");
-						string author = Console.ReadLine();
+						string author = Console.ReadLine()!;
 
 						// validation to avoid garbage input
 						if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(author))
@@ -44,7 +44,7 @@
 					case 3:
 						// Search book by author
 						Console.Write("Enter author name to search: ");
-						string searchAuthor = Console.ReadLine();
+						string searchAuthor = Console.ReadLine()!;
 
 						if (string.IsNullOrEmpty(searchAuthor))
 						{

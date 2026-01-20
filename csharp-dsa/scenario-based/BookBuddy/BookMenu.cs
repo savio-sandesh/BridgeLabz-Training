@@ -13,7 +13,7 @@
 			Console.WriteLine("5. Exit");
 			Console.Write("Enter your choice: ");
 
-			int choice = int.Parse(Console.ReadLine());
+			int choice = int.Parse(Console.ReadLine()!);
 			return choice;
 		}
 	}
