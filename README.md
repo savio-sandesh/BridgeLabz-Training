@@ -1,301 +1,546 @@
-# Data Structure And Algorithm
-
-## Day 1 – Data Structures & Linked Lists (C#)
-
-### Topics Covered
-- Overview of Data Structures
-- Features of Data Structures in C#
-- Types of Data Structures:
-  - Linear
-  - Hierarchical
-  - Graph
-  - Hash-based
-  - Advanced
-- Linked Lists:
-  - Singly Linked List
-  - Doubly Linked List
-  - Circular Linked List
-
-### Hands-on Practice
-- Implemented Linked List–based programs:
-  - Employee Record Management using Singly Linked List
-  - Playlist Management using Circular Linked List
-- Solved **Employee Wage Computation Problem** (OOP-based) 
-  - Attendance check
-  - Daily and monthly wage calculation
-  - Full-time and part-time employee wage handling
-  - Conditional wage computation using loops and control statements
-
-### Key Learnings
-- Practical application of Linked Lists for dynamic data handling
-- Improved understanding of object-oriented programming concepts
-- Experience implementing real-world problems using classes and methods
+# DayWise Training Log
 
 ---
 
-## Day 2 – Stacks, Queues, Dictionary & OOP Concepts (C#)
+## 📅 Day-1
 
-### Topics Covered
-- Stack data structure and LIFO principle
-- Balanced Parentheses validation using Stack
-- Queue data structure and FIFO principle
-- Dictionary (HashMap) and hashing concepts
-- Core OOP concepts:
-  - Abstraction
-  - Interfaces
-  - Polymorphism
+### 🧠 Concepts Learned
+**💻 High-level vs Low-level Languages** – abstraction, performance, and portability  
+**🔁 Compiler vs Interpreter** – code translation and execution flow  
+**⚙️ .NET Ecosystem Basics** – .NET SDK, CLR, and IL overview  
+**🏗️ CLR Architecture** – source code → IL → JIT → native execution  
 
-### Hands-on Practice
-- Implemented Balanced Parentheses Checker using Stack
-- Practiced Stack operations: Push, Pop, Peek
-- Implemented Queue-based task scheduling example
-- Implemented Dictionary for word frequency counting
+### 🧪 C# Fundamentals
+**👋 Hello World in C#** – program structure and entry point  
+**🧱 Classes & Objects** – object-oriented programming basics  
+**🧾 Data Types & Naming Conventions** – clean and readable code  
 
-### Scenario-Based Problems Solved
-- **FitTrack – Fitness Tracker**
-  - Classes: `UserProfile`, `Workout`
-  - Interface: `ITrackable`
-  - Implemented `CardioWorkout` and `StrengthWorkout`
-    
-### Key Learnings
-- Stack is effective for validation and backtracking problems
-- Queues are suitable for scheduling and request handling
-- Dictionary enables efficient key-value data access
-- Interfaces and polymorphism improve code flexibility and design
+### 🌱 Tools & Workflow
+**🧰 Git & GitHub Basics** – init, add, commit, push  
+**🗂️ Version Control Hygiene** – tracking changes effectively  
+
+📌 *Progress:* Built a strong foundation in .NET execution and basic C# syntax.
 
 ---
 
+## 📅 Day-2
 
-## Day 3 – Sorting Algorithms & Scenario-Based Problems (C#)
+### 🧠 Core C# Concepts
+**📌 Static Keyword** – shared members across all instances  
+**🏷️ Static Variables** – single copy per class  
+**⚙️ Static Methods** – callable without object creation  
+**🏗️ Static Constructors** – executed once during class loading  
+**🧩 Static & Nested Classes** – utility-style and structured design  
+**🧠 Static vs Non-static Context** – access rules and memory behavior  
 
-### Topics Covered
-- Sorting Algorithms in C#:
-  - Bubble Sort
-  - Insertion Sort
-  - Merge Sort
-  - Quick Sort
-- Overview of advanced sorting techniques:
-  - Selection Sort
-  - Heap Sort
-  - Counting Sort
-  - Radix Sort
-  - Bucket Sort
+### ➗ Operators in C#
+**➕ Arithmetic Operators** – `+ - * / %`  
+**🔍 Relational Operators** – `== != > < >= <=`  
+**🔗 Logical Operators** – `&& || !`  
+**📝 Assignment Operators** – `= += -= *= /= %=`  
+**🔁 Unary Operators** – `++ -- !`  
+**🧮 Bitwise Operators** – `& | ^ ~ << >>`  
+**❓ Ternary Operator** – concise conditional logic  
+**🧪 is Operator** – runtime type checking  
 
-### Hands-on Practice
-- Implemented and tested sorting algorithms:
-  - Bubble Sort
-  - Insertion Sort
-  - Merge Sort
-  - Quick Sort
+### 🧪 Programming Elements Practiced
+**💬 Comments** – single-line and multi-line  
+**📦 Variables & Data Types** – `int`, `double`, `char`, `string`  
+**✍️ Naming Conventions** – meaningful identifiers  
+**🔄 Operator Precedence** – BODMAS / PEMDAS  
+**🔀 Type Conversion** – implicit and explicit casting  
+**⌨️ User Input** – reading and processing input values  
 
-### Scenario-Based Problems Solved
-- **FitTrack – Fitness Tracker**
-  - Classes: `UserProfile`, `Workout`
-  - Interface: `ITrackable`
-  - Implemented workout types:
-    - `CardioWorkout`
-    - `StrengthWorkout`
-
-- **ATM Dispenser Logic**
-  - Designed logic to dispense minimum number of currency notes
-  - Scenario A: Optimal note combination for ₹880
-  - Scenario B: Strategy update after removing ₹500 notes
-  - Scenario C: Fallback handling when exact change is not possible
-
-### Key Learnings
-- Different sorting algorithms have different performance characteristics
-- Algorithm selection depends on input size and constraints
-- Scenario-based problems help apply logical thinking and OOP concepts
-
---- 
-
-
-## Day 4 – File Handling, Strings, Searching Algorithms & Scenario-Based Design (C#)
-
-### Topics Covered
-- File handling in C#:
-  - `StreamReader` as an equivalent to Java’s `BufferedReader`
-  - Difference between `FileStream` and `StreamReader`
-  - Handling character encoding while reading files
-- String handling in C#:
-  - `String` vs `StringBuilder`
-  - Performance considerations and mutability
-- Searching Algorithms:
-  - Linear Search
-  - Binary Search
-  - Search optimization using sorting and hashing
-
-### Hands-on Practice
-- Read text data from files and console using `StreamReader`
-- Implemented file reading using `FileStream`
-- Compared performance of `String` and `StringBuilder`
-- Implemented word search in large text files using:
-  - Linear Search
-  - Binary Search (after sorting)
-- Built word index using `Dictionary<string, int>`
-
-### Scenario-Based / Story-Based Problems Solved
-- **Metal Factory Pipe Cutting**
-  - Maximized revenue by determining optimal cut strategy
-  - Evaluated impact of custom-length orders
-  - Analyzed revenue loss due to non-optimized cuts
-
-- **Custom Furniture Manufacturing**
-  - Designed logic to maximize earnings for wooden rod cutting
-  - Incorporated waste constraints into solution
-  - Balanced revenue maximization with minimal waste
-
-- **LoanBuddy – Loan Approval Automation**
-  - Designed core loan approval engine
-  - Implemented:
-    - `Applicant` and `LoanApplication` classes
-    - `IApprovable` interface
-    - Multiple loan types using inheritance
-  - Applied:
-    - Encapsulation for sensitive data
-    - Polymorphism for EMI calculation
-    - Constructors for different loan configurations
-
-### Key Learnings
-- Proper file-handling approach depends on data type and encoding needs
-- `StringBuilder` is more efficient for frequent string modifications
-- Binary Search significantly improves performance on sorted data
-- Scenario-based design improves understanding of OOP principles
-- Encapsulation and polymorphism are critical for real-world system design
-
-  ---
-
-## Day 5 – Runtime Analysis, Big-O Notation & Scenario-Based Applications
-
-### Topics Covered
-- Runtime Analysis and algorithm efficiency
-- Big-O Notation:
-  - O(1), O(log N), O(N), O(N log N), O(N²), O(2ⁿ), O(N!)
-- Time Complexity:
-  - Best, Average, and Worst case analysis
-- Space Complexity:
-  - Constant and Linear space usage
-- Performance comparison of common algorithms:
-  - Linear Search, Binary Search
-  - Bubble Sort, Merge Sort, Quick Sort
-- Best practices for optimizing C# code:
-  - Choosing efficient data structures
-  - Reducing nested loops
-  - Avoiding unnecessary recursion
-  - Using built-in optimized libraries
-
-### Hands-on Practice
-- Analyzed time and space complexity of sample C# programs
-- Compared algorithm performance using Big-O notation
-- Evaluated impact of sorting and searching strategies
-- Applied optimization techniques to reduce runtime overhead
-
-### Scenario-Based / Story-Based Problems Solved
-- **CinemaTime – Movie Schedule Manager**
-  - Managed movie titles and showtimes using lists
-  - Implemented add, search, and display operations
-  - Applied string formatting and exception handling
-  - Converted collections to arrays for reporting
-
-- **BookBuddy – Digital Bookshelf App**
-  - Stored and managed books using ArrayList
-  - Implemented sorting and author-based search
-  - Applied string parsing and custom exceptions
-  - Exported data by converting collections to arrays
-
-### Key Learnings
-- Big-O notation helps evaluate scalability before implementation
-- Time and space complexity guide algorithm selection
-- Proper data structure choice significantly improves performance
-- Exception handling is essential for robust real-world applications
-- Scenario-based problems reinforce analytical and design skills
+📌 *Progress:* Achieved clarity in C# language constructs and execution behavior.
 
 ---
 
-## Day 6 – Address Book System & File I/O (C#)
+## 📅 Day-3
 
-### Topics Covered
-- Address Book system design using OOP principles
-- Managing contact data using arrays
-- Searching and sorting data stored in arrays
-- File I/O operations in C#
-- Reading and writing data to files
-- Understanding extensible system design concepts
+### 🧪 Assignment-Based Practice (Hands-on)
 
-### Hands-on Practice
-- Created Address Book application using arrays for data storage
-- Implemented contact management features:
-  - Add new contact
-  - Edit existing contact
-  - Delete contact
-  - Prevent duplicate contact entries
-- Managed multiple contacts using array-based structures
-- Implemented search functionality by name, city, and state
-- Implemented sorting using array-based logic:
-  - Sort by name
-  - Sort by city, state, and zip
-- Read and write address book data using File I/O
-- Worked with structured data storage using files
+**📘 Programming Elements – Level 1**
+- Student result display using variables  
+- Travel computation (distance and time)  
+- Age calculation using birth year  
+- Average marks calculation  
+- Unit conversions (km → miles, cm → feet & inches)  
+- Profit and loss calculation with percentage  
+- Division and modulus-based problems  
+- Fee discount calculation  
+- Volume of Earth calculation  
+- Basic calculator operations  
+- Triangle area and square side calculation  
+- Handshake problem using mathematical logic  
 
-### Assignment Worked On
-- **Address Book System (UC 1 – UC 18)**
-  - Console-based address book application
-  - Array-based data management
-  - File persistence for contact information
-  - Designed for future extension of data sources
+**📗 Programming Elements – Level 2**
+- Quotient and remainder calculation  
+- Operator precedence-based arithmetic  
+- Temperature conversion (Celsius ↔ Fahrenheit)  
+- Salary and bonus computation  
+- Swapping two numbers  
+- Travel computation using user input  
+- Athlete running rounds problem  
+- Simple interest calculation  
+- Weight conversion (pounds → kilograms)  
 
-### Key Learnings
-- Arrays require manual management of size and indexing
-- Sorting and searching logic is more explicit with arrays
-- File I/O is essential for data persistence
-- Clean OOP structure improves readability and maintenance
-- Early design decisions impact scalability and flexibility
+### 🧠 Skills Strengthened
+- Variable and data handling  
+- User input validation  
+- Arithmetic and logical reasoning  
+- Mathematical problem solving  
+- Clean code structure and indentation  
+
+📌 *Progress:* Strong confidence gained through real-world logic implementation.
 
 ---
 
-## Day 7 – BrowserBuddy: Tab History Manager (Doubly Linked List & Stack)
+## 📅 Day-4
 
-### Problem Statement
-Develop a console-based browser application that manages multiple tabs and
-maintains browsing history for each tab. The browser must support **Back** and **Forward**
-navigation and allow users to restore recently closed pages.  
-To implement this functionality efficiently, a **Doubly Linked List** is used for page
-navigation and a **Stack** is used to store recently closed pages.
+### 🧠 Control Flow Statements
+**🔀 Selection Statements** – `if`, `else if`, `else`  
+**🎯 Switch Case** – structured multi-condition handling  
+**🔁 Iteration Statements** – `for`, `while`, `do-while`  
+**⏭️ Jump Statements** – `break`, `continue`, `return`  
 
-### Topics Covered
-- Application of Doubly Linked List in real-world scenarios
-- Stack data structure and LIFO principle
-- Browser navigation logic (Back and Forward)
-- Tab-based history management
-- Menu-driven console application design
-- Applying OOP principles in C#
+### 🧪 Logic Building Practice
+- Solved 30+ problems across difficulty levels  
+- Basic checks: Even/Odd, Leap Year, Voting eligibility  
+- Intermediate logic: Prime numbers, Fibonacci, Factorial  
+- Advanced problems using nested loops and conditions  
 
-### Hands-on Practice
-- Designed and implemented **BrowserBuddy – Tab History Manager**
-- Created support for multiple browser tabs
-- Implemented page navigation within a tab using **Doubly Linked List**
-- Enabled:
-  - Backward navigation
-  - Forward navigation
-- Implemented page visit functionality per tab
-- Stored recently closed pages using **Stack**
-- Restored closed pages using LIFO behavior
-- Displayed current tab and page status
-- Displayed complete browsing history of the active tab
+📌 *Progress:* Significant improvement in logical thinking and flow control.
 
-### Data Structures Used
-- **Doubly Linked List**
-  - Maintains page navigation history per tab
-  - Supports efficient back and forward traversal
-- **Stack (Array-based)**
-  - Stores recently closed pages
-  - Enables restoration using LIFO principle
+---
 
-### Key Learnings
-- Doubly Linked Lists are effective for bidirectional navigation systems
-- Stacks are suitable for restoring recently closed items
-- Combining multiple data structures improves system functionality
-- Menu-driven design enhances user interaction in console applications
-- Applying OOP principles results in cleaner and more maintainable code
+## 📅 Day-5
 
+### 🧠 Arrays in C#
+**📦 Array Fundamentals** – declaration, initialization, indexing  
+**🧠 Memory Perspective** – contiguous memory allocation  
+**🔁 Traversal Techniques** – `for` vs `foreach`  
+**⚠️ Edge Case Handling** – negative values and empty inputs  
+
+### 🧪 Practical Tasks
+- Finding maximum and minimum values  
+- Reversing arrays  
+- Searching elements  
+- Frequency counting problems  
+- Solved 20+ array-based programs  
+
+📌 *Progress:* Strong understanding of data storage and manipulation.
+
+---
+
+## 📅 Day-6
+
+### 🧠 Methods in C#
+**🧩 Method Structure** – access modifiers, return types, parameters  
+**♻️ DRY Principle** – avoiding repetition using methods  
+**⚙️ Static vs Instance Methods** – memory and invocation differences  
+
+### 🔁 Parameter Passing
+- `ref` – pass by reference  
+- `out` – return multiple values  
+- `params` – variable-length arguments  
+
+### 🧪 Practical Tasks
+- Solved 30+ method-based problems  
+- Refactored earlier programs into reusable methods  
+
+📌 *Progress:* Code became modular, readable, and reusable.
+
+---
+
+## 📅 Day-7
+
+### 🧠 .NET Internals
+**⚙️ IL / CIL / MSIL** – intermediate language concepts  
+**🏗️ CLR Responsibilities** – garbage collection, exception handling, type safety  
+**🚀 JIT Compilation** – runtime native code generation  
+**📦 Assemblies** – DLL vs EXE overview  
+
+### 🧠 Memory Management
+- Value types and stack allocation  
+- Reference types and heap allocation  
+- Object lifecycle and garbage collection  
+
+📌 *Progress:* Clear understanding of runtime execution and memory behavior.
+
+---
+
+## 📅 Day-8
+
+### 🧵 Strings in C#
+**🧠 String Immutability** – memory behavior  
+**✂️ String Operations** – `Split()`, `Substring()`, `Replace()`  
+**⚡ StringBuilder** – performance optimization  
+
+### 🎮 Modular Game Design (Snake & Ladders)
+- Supports 2–4 players  
+- Modular methods:
+  - `RollDice()`  
+  - `MovePlayer()`  
+  - `CheckForSnakeOrLadder()`  
+
+### 🧪 Practical Tasks
+- Solved 20+ string manipulation problems  
+- Designed modular game structure  
+
+📌 *Progress:* Transitioned from writing programs to designing modular applications.
+
+---
+
+## 📅 Day-9
+
+### 🧠 Arrays – Scenario Based Problems
+**🌡️ Temperature Analyzer (Weekly Hourly Data)**  
+**🎓 Student Test Score Management**
+
+### 🧠 Strings – Scenario Based Problems
+**✍️ Sentence Formatter**  
+**📊 Paragraph Text Analyzer**
+
+### 🧠 Programming Paradigms
+**🧩 Procedural Programming**
+- Top-down, step-by-step execution approach  
+- Focus on functions and procedures  
+- Implemented logic using reusable methods  
+
+**🆚 Procedural vs OOP**
+- Functions vs classes as core building blocks  
+- Data security and scalability comparison  
+- Real-world modeling limitations in procedural approach  
+
+### 🧠 Object-Oriented Programming (OOP)
+**🏗️ Class & Object Concepts**
+- Class as a blueprint for objects  
+- Object creation and memory allocation  
+- Attributes, methods, and constructors  
+
+**🧠 OOP Principles Overview**
+- Encapsulation and abstraction  
+- Reusability through inheritance  
+- Polymorphism concepts  
+- Modular and maintainable design  
+
+### 🧪 Programming Practice
+- Student details program using classes and constructors  
+- Travel details program modeling real-world entities  
+- Emphasis on clean class design and method usage  
+
+---
+
+## 📅 Day-10
+
+### 🧠 Constructors & Object Initialization
+- Learned constructors as special methods used to initialize objects  
+- Practiced **default**, **parameterized**, and **copy constructors**  
+- Understood **constructor overloading** and automatic invocation using `new`  
+- Implemented a **Coffee Shop Order System** to apply constructor concepts  
+
+
+### 🔐 Access Modifiers in C#
+- Studied `public`, `private`, `protected`, and `internal`  
+- Understood visibility rules and their role in encapsulation  
+
+
+### 🧩 Instance vs Class Members
+- Differentiated **instance variables/methods** and **static (class) members**  
+- Used static variables to track shared data across objects  
+
+
+### 🧠 Scenario-Based Practice
+- **Library Management System**: book search, display, and checkout using arrays and strings  
+- **EduQuiz – Student Quiz Grader**: answer comparison, score calculation, and result evaluation  
+
+📌 *Progress:* Applied OOP, arrays, strings, and methods to real-world problems.
+
+---
+
+## 📅 Day-11
+
+### 🧠 Strings & Methods (Scenario-Based)
+
+**Invoice Generator**
+- Parsed structured input strings to extract task names and amounts  
+- Calculated total invoice value using method-based logic  
+
+**Methods:** `ParseInvoice()`, `GetTotalAmount()`
+
+### 🏦 Bank Account Manager
+- Designed `BankAccount` class with encapsulated balance handling  
+- Implemented `Deposit()`, `Withdraw()` (with overdraft protection), and `CheckBalance()`
+
+### 🧮 Utility Class – Mathematical Operations
+- Implemented methods for factorial, prime check, GCD, and Fibonacci  
+- Validated logic using edge cases (0, 1, negative inputs)
+
+
+### 🧠 Core C# Keywords
+- **`this`** – resolved instance-level ambiguity and enabled constructor chaining  
+- **`static`** – implemented shared, class-level utility logic  
+- **`sealed`** – enforced inheritance restrictions  
+- **`is`** – ensured safe runtime type checking  
+
+📌 *Progress:* Strengthened method design, string processing, and understanding of core C# language constructs through practical scenarios.
+
+---
+
+## 📅 Day-12
+
+### 🧠 Arrays & Methods (Scenario-Based)
+
+**Cafeteria Menu App**
+- Stored fixed menu items using `string[]`
+- Displayed menu with index-based selection
+- Allowed item selection via user input
+- Modularized logic using methods
+
+**Methods Used:**  
+`DisplayMenu()`, `GetItemByIndex()`
+
+### 🧠 Object-Oriented Programming – Class vs Object
+
+- Understood **class** as a blueprint defining structure and behavior  
+- Understood **object** as an instance with actual state and memory allocation  
+- Learned memory allocation:
+  - Class metadata → method area  
+  - Objects → heap memory  
+
+
+### 🏦 Class vs Object (Banking Context)
+- Modeled `BankAccount` as a class with attributes and behaviors
+- Created multiple account objects with independent state
+- Reinforced how shared structure supports unique instances
+
+
+### 🏫 OOP Modeling – School Management System
+- Designed interacting classes: `Student`, `Teacher`, `Course`, `School`
+- Practiced object collaboration and responsibility separation
+- Used collections to manage relationships between objects
+
+### 🧩 UML Basics
+- **Class Diagram:** Represented static structure, attributes, methods, and relationships  
+- **Sequence Diagram:** Represented dynamic interaction and method call flow between objects  
+
+📌 *Progress:* Strengthened understanding of arrays, method modularity, object instantiation, and foundational object-oriented system modeling.
+
+---
+
+## 📅 Day-13
+
+### 🧠 Inheritance in C#
+
+- Studied inheritance as a core OOP principle  
+- Understood parent–child class relationships  
+- Implemented single, multilevel, and hierarchical inheritance  
+
+### 🔁 Method Overriding & Polymorphism
+- Used `virtual` and `override` keywords  
+- Applied runtime polymorphism using base class references  
+
+### 🏗️ Constructor Behavior
+- Learned constructor execution order  
+- Used `base()` for parent constructor calls  
+
+### 🔐 Access Modifiers
+- Applied `public`, `protected`, `internal`, and `private`  
+- Controlled member visibility in inheritance  
+
+📌 *Progress:* Built strong foundation in inheritance, overriding, and runtime behavior.
+
+---
+
+## 📅 Day-14
+
+### 🧠 Encapsulation
+
+- Applied data hiding using private fields  
+- Used properties for controlled access  
+- Enforced validation and business rules  
+
+### 🧠 Polymorphism
+
+- Implemented compile-time (overloading)  
+- Implemented runtime (overriding) polymorphism  
+- Used interfaces and abstract classes  
+
+### 🧩 Abstraction
+- Compared abstract classes vs interfaces  
+- Designed loosely coupled systems  
+
+### 🧪 Scenario-Based Design
+- Hospital Patient Management System  
+- Vehicle Rental Application  
+
+📌 *Progress:* Strengthened encapsulation, abstraction, and polymorphic design.
+
+---
+
+## 📅 Day-15
+
+### 🧠 OOP Design – Bird Sanctuary System
+
+- Base class `Bird` with shared attributes  
+- Interfaces: `IFlyable`, `ISwimmable`  
+- Implementations:
+  - Eagle, Sparrow  
+  - Duck, Penguin  
+  - Seagull  
+
+### 🔁 Polymorphism
+- Stored objects in arrays  
+- Used `is` operator to invoke behaviors dynamically  
+
+### 🧠 Scenario-Based Design – Call Log Manager
+- Managed call logs using arrays  
+- Implemented keyword search and time-based filtering  
+
+📌 *Progress:* Applied interfaces, inheritance, arrays, and runtime polymorphism.
+
+---
+
+## 📅 Day-17
+
+### 🧠 Data Structures Overview
+
+- Studied linear, hierarchical, hash-based, and advanced data structures  
+- Compared static vs dynamic memory allocation  
+
+### 🔗 Linked Lists
+- Singly Linked List  
+- Doubly Linked List  
+- Circular Linked List  
+
+### 🧪 Scenario-Based Practice
+- Employee Record Management (SLL)  
+- Playlist Management System (CLL)  
+
+📌 *Progress:* Applied linked lists to dynamic real-world problems.
+
+---
+
+## 📅 Day-18
+
+### 🧠 Stack (LIFO)
+
+- Used `Stack<T>` and core operations  
+- Solved balanced parentheses problem  
+- Analyzed time and space complexity  
+
+### 🧠 Queue (FIFO)
+- Used `Queue<T>` for task scheduling  
+- Studied priority and concurrent queues  
+
+### 🧠 Dictionary (Hash-Based)
+- Implemented fast key-value lookup  
+- Studied hashing and collision handling  
+
+### 🧩 Scenario-Based Design
+- Smart Home Automation System  
+
+📌 *Progress:* Strengthened data structures and algorithmic problem-solving.
+
+---
+
+## 📅 Day-19
+
+### 🧠 OOP Design – FitTrack
+
+- Designed workout tracking system  
+- Implemented interface-based polymorphism  
+
+### 🧠 ATM Dispenser Logic
+- Optimized note distribution  
+- Handled fallback strategies  
+
+### 🧠 Sorting Algorithms
+- Bubble Sort  
+- Insertion Sort  
+- Merge Sort  
+- Quick Sort  
+
+📌 *Progress:* Improved algorithm design and performance analysis skills.
+
+---
+
+## 📅 Day-20
+
+### 🧠 File Handling in C#
+
+- Used `StreamReader` for file and console input  
+- Compared FileStream vs StreamReader  
+
+### 🧠 String vs StringBuilder
+- Compared immutability and performance  
+- Chose based on usage patterns  
+
+### 🧠 Searching & Indexing
+- Linear Search  
+- Binary Search  
+- Dictionary-based indexing  
+
+### 🧠 Optimization Problems
+- Metal Factory Pipe Cutting  
+- Custom Furniture Manufacturing  
+
+### 🧠 System Design – LoanBuddy
+- Applied encapsulation, inheritance, polymorphism  
+- Designed EMI calculation logic  
+
+📌 *Progress:* Integrated file I/O, optimization, searching, and system design.
+
+---
+
+## 📅 Day-21
+
+### 🧠 Runtime Analysis & Big-O
+
+- Studied time and space complexity  
+- Compared best, average, and worst cases  
+
+### ⚙️ Optimization Best Practices
+- Efficient data structure selection  
+- Reduced nested loops  
+- Used built-in optimized libraries  
+
+### 🧪 Scenario-Based Design
+- CinemaTime – Movie Schedule Manager  
+- BookBuddy – Digital Bookshelf App  
+
+📌 *Progress:* Strengthened performance analysis and exception handling.
+
+---
+
+## 📅 Day-22
+
+### 🧠 Case Study – Address Book System
+
+- Designed scalable address book architecture  
+- Modeled Contact and AddressBook entities  
+
+### 🧠 Contact Management Logic
+- Added, updated, and removed contacts  
+- Prevented duplicates using equality logic  
+
+### 📦 Collections & Search
+- Managed multiple address books using dictionary  
+- Searched and grouped contacts by city and state  
+
+### 🔍 Sorting & Analytics
+- Sorted by name, city, state, and zip  
+- Counted contacts by location  
+
+### 💾 Persistence
+- File I/O  
+- CSV and JSON formats  
+- JSON server integration  
+
+### 🌐 Advanced Design
+- Non-blocking I/O  
+- Database persistence  
+- Followed Open–Closed Principle  
+
+📌 *Progress:* Built an extensible, production-style system using OOP, collections, async I/O, and SOLID principles.
 
