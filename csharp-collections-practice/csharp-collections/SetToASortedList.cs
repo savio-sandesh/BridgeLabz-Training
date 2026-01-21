@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
 
-class RemoveDuplicates
+class SetToASortedLisT
 {
     static void Main()
     {
-        List<int> list = new List<int>();
+        HashSet<int> set = new HashSet<int>();
 
-        // Step 1: Read list elements
+        // Step 1: Read set elements
         Console.Write("Enter number of elements: ");
         int n = Convert.ToInt32(Console.ReadLine());
 
         for (int i = 0; i < n; i++)
         {
             Console.Write("Enter element " + (i + 1) + ": ");
-            list.Add(Convert.ToInt32(Console.ReadLine()));
+            set.Add(Convert.ToInt32(Console.ReadLine()));
         }
 
         int choice;
@@ -22,28 +22,38 @@ class RemoveDuplicates
         // Step 2: Menu after input
         do
         {
-            Console.WriteLine("\n1. Remove duplicates");
+            Console.WriteLine("\n1. Convert to sorted list");
             Console.WriteLine("2. Exit");
             Console.Write("Enter your choice: ");
             choice = Convert.ToInt32(Console.ReadLine());
 
             if (choice == 1)
             {
-                List<int> result = new List<int>();
+                List<int> list = new List<int>();
 
-                // Traverse original list
-                foreach (int item in list)
+                // Convert set to list
+                foreach (int item in set)
                 {
-                    // Add element only if it is not already present
-                    if (!result.Contains(item))
+                    list.Add(item);
+                }
+
+                // Simple sorting using nested loops (no built-in Sort)
+                for (int i = 0; i < list.Count - 1; i++)
+                {
+                    for (int j = i + 1; j < list.Count; j++)
                     {
-                        result.Add(item);
+                        if (list[i] > list[j])
+                        {
+                            int temp = list[i];
+                            list[i] = list[j];
+                            list[j] = temp;
+                        }
                     }
                 }
 
-                // Display list after removing duplicates
-                Console.WriteLine("List after removing duplicates:");
-                foreach (int item in result)
+                // Display sorted list
+                Console.WriteLine("Sorted List:");
+                foreach (int item in list)
                 {
                     Console.Write(item + " ");
                 }

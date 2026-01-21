@@ -1,20 +1,20 @@
 using System;
 using System.Collections.Generic;
 
-class RemoveDuplicates
+class ReverseQueue
 {
     static void Main()
     {
-        List<int> list = new List<int>();
+        Queue<int> queue = new Queue<int>();
 
-        // Step 1: Read list elements
+        // Step 1: Read queue elements
         Console.Write("Enter number of elements: ");
         int n = Convert.ToInt32(Console.ReadLine());
 
         for (int i = 0; i < n; i++)
         {
             Console.Write("Enter element " + (i + 1) + ": ");
-            list.Add(Convert.ToInt32(Console.ReadLine()));
+            queue.Enqueue(Convert.ToInt32(Console.ReadLine()));
         }
 
         int choice;
@@ -22,28 +22,17 @@ class RemoveDuplicates
         // Step 2: Menu after input
         do
         {
-            Console.WriteLine("\n1. Remove duplicates");
+            Console.WriteLine("\n1. Reverse queue");
             Console.WriteLine("2. Exit");
             Console.Write("Enter your choice: ");
             choice = Convert.ToInt32(Console.ReadLine());
 
             if (choice == 1)
             {
-                List<int> result = new List<int>();
+                ReverseQueue(queue);
 
-                // Traverse original list
-                foreach (int item in list)
-                {
-                    // Add element only if it is not already present
-                    if (!result.Contains(item))
-                    {
-                        result.Add(item);
-                    }
-                }
-
-                // Display list after removing duplicates
-                Console.WriteLine("List after removing duplicates:");
-                foreach (int item in result)
+                Console.WriteLine("Reversed Queue:");
+                foreach (int item in queue)
                 {
                     Console.Write(item + " ");
                 }
@@ -59,5 +48,22 @@ class RemoveDuplicates
             }
 
         } while (choice != 2);
+    }
+
+    // Recursive method to reverse the queue using only queue operations
+    static void ReverseQueue(Queue<int> queue)
+    {
+        // Base condition: if queue is empty, return
+        if (queue.Count == 0)
+            return;
+
+        // Remove front element
+        int front = queue.Dequeue();
+
+        // Reverse remaining queue
+        ReverseQueue(queue);
+
+        // Add removed element at the end
+        queue.Enqueue(front);
     }
 }
