@@ -907,25 +907,82 @@ Strengthened performance analysis skills and learned to design optimized, scalab
 ### Topics Covered
 
 #### JSON Fundamentals
-- JSON structure and data types
+- Studied JSON (JavaScript Object Notation) as a lightweight, human-readable data-interchange format
+- Understood JSON structure based on key–value pairs
+- Learned supported JSON data types:
+  - String, Number, Boolean, Null
+  - Array ([])
+  - Object ({})
 
-#### Serialization & Deserialization
-- Reading and writing JSON
+#### Creating JSON in C#
+- Explored two approaches for JSON handling:
+  - Newtonsoft.Json
+  - System.Text.Json
+- Created JSON objects using anonymous C# objects
+- Generated formatted (indented) JSON output for readability
+
+#### Nested JSON Objects
+- Implemented JSON objects containing nested objects
+- Modeled real-world relationships such as User and Address
+- Practiced structuring hierarchical data using JSON
+
+#### JSON Arrays
+- Represented collections of values using JSON arrays
+- Implemented arrays inside JSON objects (e.g., skills list)
+
+#### JSON Serialization & Deserialization
+- Serialization:
+  - Converted C# objects into JSON strings
+  - Stored serialized JSON into files
+- Deserialization:
+  - Read JSON data from files
+  - Converted JSON strings back into C# objects dynamically
 
 #### Parsing & Navigation
-- Nested JSON handling
-- Modern .NET JSON libraries
+- Parsed JSON dynamically using JObject
+- Accessed nested JSON properties without defining C# classes
+- Extracted specific values from complex JSON structures
 
-#### Schema Validation
-- JSON Schema basics
-- Pre-processing validation
+#### JSON Schema Validation
+- Introduced JSON Schema to define structural rules
+- Validated JSON data against schema constraints
+- Ensured required fields, data types, and value ranges were enforced
 
-### Practical Focus
-- Migrated systems to JSON
-- Pretty vs minified JSON
-- Nullable and Date handling
+---
+
+### Scenario-Based Questions (Trainer Provided)
+
+- **StreamBuzz – Creator Engagement Tracker (C#)**
+  - Designed a console-based analytics system to track creators’ weekly engagement
+  - Registered creators and stored weekly like counts
+  - Identified top-performing creators based on a like threshold
+  - Calculated overall average weekly likes across the platform
+  - Applied arrays, lists, dictionaries, and aggregation logic
+
+- **OceanFleet – Vessel Performance Analytics (Java)**
+  - Built a vessel tracking system to manage performance data
+  - Stored vessel details including speed and type
+  - Retrieved vessel information using vessel ID
+  - Identified high-performance vessels based on maximum average speed
+  - Implemented object-oriented design using model and utility classes
+
+---
+
+### Practical Study & Requirements
+- Created JSON files programmatically using C#
+- Read and wrote JSON data using file I/O
+- Parsed and validated JSON without relying on predefined models
+- Implemented schema-based validation to prevent invalid data processing
+
+### Goals for the Day
+- Understand JSON structure and supported data types
+- Create, read, write, and parse JSON in C#
+- Validate JSON data using schemas
+- Practice scenario-based problem solving
 
 ### Key Learnings
-- JSON as structured data representation
-- Schema validation prevents runtime failures
-- Clear comparison between CSV and JSON
+- Understood JSON as a structured representation of data similar to dictionaries and objects
+- Learned how serialization and deserialization enable data exchange between systems
+- Realized the importance of schema validation in preventing runtime failures
+- Strengthened confidence in handling real-world, scenario-based programming tasks
+
