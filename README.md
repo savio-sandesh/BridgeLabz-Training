@@ -950,7 +950,7 @@ Strengthened performance analysis skills and learned to design optimized, scalab
 
 ---
 
-### Scenario-Based Questions (Trainer Provided)
+### Scenario-Based Questions
 
 - **StreamBuzz – Creator Engagement Tracker (C#)**
   - Designed a console-based analytics system to track creators’ weekly engagement
@@ -959,7 +959,7 @@ Strengthened performance analysis skills and learned to design optimized, scalab
   - Calculated overall average weekly likes across the platform
   - Applied arrays, lists, dictionaries, and aggregation logic
 
-- **OceanFleet – Vessel Performance Analytics (Java)**
+- **OceanFleet – Vessel Performance Analytics**
   - Built a vessel tracking system to manage performance data
   - Stored vessel details including speed and type
   - Retrieved vessel information using vessel ID
