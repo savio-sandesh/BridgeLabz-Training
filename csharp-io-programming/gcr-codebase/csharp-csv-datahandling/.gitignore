@@ -1,0 +1,9 @@
+# Ignore generated CSV files
+*.csv
+
+# Ignore generated JSON files
+*.json
+
+# Ignore training folders outside scope
+csharp-dsa/
+csharp-collections-practice/
