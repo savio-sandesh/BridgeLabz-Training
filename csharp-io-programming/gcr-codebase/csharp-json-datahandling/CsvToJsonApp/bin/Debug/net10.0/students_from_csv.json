@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 101,
+    "Name": "Rahul Kumar",
+    "Age": 20,
+    "Marks": 85
+  },
+  {
+    "Id": 102,
+    "Name": "Priya Sharma",
+    "Age": 19,
+    "Marks": 92
+  },
+  {
+    "Id": 103,
+    "Name": "Aman Singh",
+    "Age": 21,
+    "Marks": 78
+  },
+  {
+    "Id": 104,
+    "Name": "Sneha Verma",
+    "Age": 18,
+    "Marks": 88
+  },
+  {
+    "Id": 105,
+    "Name": "Vikram Patel",
+    "Age": 22,
+    "Marks": 65
+  }
+]
