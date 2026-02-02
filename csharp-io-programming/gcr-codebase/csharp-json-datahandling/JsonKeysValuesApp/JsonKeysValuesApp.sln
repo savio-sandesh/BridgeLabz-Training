@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonKeysValuesApp", "JsonKeysValuesApp.csproj", "{56C26A8A-72D0-CE88-92E5-A5CB4E1936BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56C26A8A-72D0-CE88-92E5-A5CB4E1936BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56C26A8A-72D0-CE88-92E5-A5CB4E1936BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56C26A8A-72D0-CE88-92E5-A5CB4E1936BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56C26A8A-72D0-CE88-92E5-A5CB4E1936BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {98852BFB-A7D3-4FFB-AAAF-3EED550445C2}
+	EndGlobalSection
+EndGlobal

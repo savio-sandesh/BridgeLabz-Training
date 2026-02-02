@@ -1,0 +1,11 @@
+{
+            "name": "Rahul Kumar",
+            "age": 24,
+            "city": "Mathura",
+            "isStudent": true,
+            "marks": [85, 92, 78],
+            "address": {
+                "street": "Civil Lines",
+                "pincode": 281001
+            }
+        }
