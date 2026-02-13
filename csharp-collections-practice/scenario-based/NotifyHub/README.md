@@ -1,78 +1,25 @@
-# 🚀 NotifyHub  
-### Concurrent Notification Processing System (.NET 6)
+# 📌 NotifyHub – Concurrent Notification Processing System
 
-![.NET](https://img.shields.io/badge/.NET-6.0+-512BD4?logo=dotnet)
-![C#](https://img.shields.io/badge/C%23-Programming-239120?logo=c-sharp)
-![Concurrency](https://img.shields.io/badge/Architecture-Concurrent-blue)
-![Status](https://img.shields.io/badge/Project-Academic%20%7C%20Portfolio-success)
+## 📖 Introduction
 
----
+**NotifyHub** is a console-based concurrent notification processing system built using **C# and .NET 6+**.  
+It demonstrates advanced concepts including multithreading, asynchronous programming, concurrent collections, clean architecture, and core object-oriented design principles.
 
-## 📖 Overview
-
-**NotifyHub** is a high-performance, console-based concurrent notification processing system built using **C# and .NET 6+**.
-
-It demonstrates real-world backend engineering concepts including:
-
-- Asynchronous programming (`async/await`)
-- Multithreading with task-based concurrency
-- Priority-based workload scheduling
-- Thread-safe collections
-- Clean architecture principles
-- SOLID design patterns
-
-The system enables users to create and process notifications (Email, SMS, App Alert) concurrently, ensuring responsiveness even under heavy load.
+The system allows users to create notifications (Email, SMS, App Alert) which are processed concurrently using priority-based scheduling.
 
 ---
 
-## ✨ Key Highlights
+## 🚀 Key Objectives
 
-- ⚡ Non-blocking asynchronous processing
-- 🎯 Priority-based scheduling using `PriorityQueue`
-- 🔒 Thread-safe state tracking with `ConcurrentDictionary`
-- 🧠 Strategy & Factory design patterns
-- 🧩 Clean layered architecture
-- 🛡 Robust failure isolation per task
-
----
-
-## 🏗 Architecture Overview
-
-NotifyHub follows a layered and extensible architecture:
-
-```
-Presentation Layer
-    ↓
-Service Layer (Business Logic + Queue Management)
-    ↓
-Strategy Layer (Sender Abstraction)
-    ↓
-Model & Validation Layer
-```
-
-### 🔹 Presentation Layer
-Handles console UI and user interaction.
-
-### 🔹 Service Layer
-Manages:
-- Notification lifecycle
-- Worker task orchestration
-- Priority queue processing
-- Concurrency coordination
-
-### 🔹 Strategy & Factory Layer
-- `INotificationSender` abstraction
-- Concrete sender implementations
-- `NotificationSenderFactory` for runtime resolution
-
-### 🔹 Model & Validation Layer
-- Domain models
-- DataAnnotations
-- Custom recipient validation attributes
+- Implement concurrent notification processing using modern .NET practices  
+- Ensure priority-based execution using a queueing mechanism  
+- Maintain system responsiveness under high load  
+- Apply clean architecture and OOP best practices  
+- Implement safe failure handling without interrupting system flow  
 
 ---
 
-## 📂 Project Structure
+## 🏗 Project Structure
 
 ```
 NotifyHub/
@@ -98,126 +45,147 @@ NotifyHub/
 
 ## ⚙️ Core Features
 
-### 1️⃣ Multi-Channel Notifications
+### 1️⃣ Multiple Notification Types
 
-- 📧 Email  
-- 📱 SMS  
-- 🔔 App Alert  
+- Email  
+- SMS  
+- App Alert  
 
-Each channel is dynamically selected using the Strategy Pattern.
+Each type is processed dynamically using the Strategy pattern.
 
 ---
 
-### 2️⃣ Priority-Based Processing
+### 2️⃣ Model Validation (Using Custom Attributes)
 
-Uses `.NET` built-in:
+Validation rules are implemented directly within the model using **DataAnnotations** and custom attributes:
 
-```
-PriorityQueue<TElement, TPriority>
-```
+- Notification ID → Required  
+- Recipient → Format validation based on type:
+  - Email → Valid email format  
+  - SMS → 10-digit numeric format  
+  - App Alert → Must end with `.appalert`  
+- Message → Required  
 
-| Priority | Value |
-|----------|-------|
+This ensures strong input validation before processing.
+
+---
+
+### 3️⃣ Priority-Based Processing
+
+Notifications are stored using the built-in `PriorityQueue<TElement, TPriority>`.
+
+| Priority | Internal Value |
+|----------|---------------|
 | High     | 1 |
 | Medium   | 2 |
 | Low      | 3 |
 
-Lower value = Higher processing priority.
+Lower numeric value = higher processing priority.
 
 ---
 
-### 3️⃣ Concurrent Worker Model
+### 4️⃣ Concurrent Processing Architecture
 
-- Background worker tasks created via `Task.Run()`
-- Non-blocking processing using `async/await`
-- Thread synchronization using `lock`
-- Thread-safe notification tracking via `ConcurrentDictionary`
+- Multiple background worker tasks  
+- Implemented using `Task` and `async/await`  
+- Non-blocking intake mechanism  
+- Thread-safe tracking using `ConcurrentDictionary`  
+- Queue synchronization using `lock`  
 
-✔ Intake operations never block processing  
-✔ Multiple notifications processed simultaneously  
-
----
-
-### 4️⃣ Validation & Data Integrity
-
-Validation implemented using:
-
-- `System.ComponentModel.DataAnnotations`
-- Custom `NotificationRecipientAttribute`
-
-Rules enforced:
-
-- ID → Required  
-- Message → Required  
-- Recipient → Format-specific validation:
-  - Email → Valid email format
-  - SMS → 10-digit number
-  - App Alert → Ends with `.appalert`
+This ensures multiple notifications are processed simultaneously without affecting system responsiveness.
 
 ---
 
-### 5️⃣ Fault Tolerance & Status Tracking
+### 5️⃣ Robust Failure Handling
 
-Each notification is processed independently.
+- Each notification is processed independently  
+- Failures do not interrupt other tasks  
+- Status lifecycle tracking:
 
-Lifecycle states:
+  - Pending  
+  - Processing  
+  - Sent  
+  - Failed  
 
-- Pending
-- Processing
-- Sent
-- Failed
-
-Failures in one task do **not** impact others.
+This improves reliability and fault tolerance.
 
 ---
 
-## 🧵 Concurrency Design
+## 🧠 System Architecture
+
+The system follows a layered architecture design:
+
+### 🔹 1. Presentation Layer
+- Console UI
+- Menu interaction
+- User input handling
+
+### 🔹 2. Service Layer
+- Business logic
+- Priority queue management
+- Worker lifecycle management
+
+### 🔹 3. Strategy & Factory Layer
+- `INotificationSender` abstraction
+- Concrete sender implementations
+- `NotificationSenderFactory` for dynamic selection
+
+### 🔹 4. Model & Validation Layer
+- Domain models
+- DataAnnotations
+- Custom recipient validation attribute
+
+---
+
+## 🧵 Concurrency Model Overview
 
 | Component | Purpose |
 |-----------|----------|
-| `PriorityQueue` | Maintains execution order |
-| `ConcurrentDictionary` | Thread-safe state storage |
-| `Task` | Worker execution |
-| `async/await` | Non-blocking IO simulation |
+| `PriorityQueue` | Maintains processing order |
+| `ConcurrentDictionary` | Thread-safe state tracking |
+| `Task.Run()` | Background workers |
+| `async/await` | Non-blocking execution |
 | `lock` | Critical section protection |
 
-This hybrid model balances safety and performance.
+This hybrid model ensures both performance and thread safety.
 
 ---
 
-## 🏛 Design Principles Applied
+## 🏛 Object-Oriented Principles Demonstrated
 
-- ✅ Encapsulation  
-- ✅ Abstraction  
-- ✅ Inheritance  
-- ✅ Polymorphism  
-- ✅ Strategy Pattern  
-- ✅ Factory Pattern  
-- ✅ Open/Closed Principle  
-- ✅ Separation of Concerns  
-- ✅ Single Responsibility Principle  
+- Encapsulation  
+- Abstraction  
+- Inheritance  
+- Polymorphism  
+- Strategy Pattern  
+- Factory Pattern  
+- Open/Closed Principle  
+- Separation of Concerns  
 
 ---
 
-## 🖥 Installation & Execution
+## 🖥️ Installation & Setup
 
-### 🔧 Prerequisites
+### Prerequisites
 
-- .NET 6 SDK or later  
+- .NET 6 SDK or higher  
 - Visual Studio 2022 / VS Code  
 
-### ▶ Run the Application
+### Steps to Run
+
+1. Clone or download the repository  
+2. Open the solution in your IDE  
+3. Build the project  
+4. Run the console application  
 
 ```bash
-git clone <repository-url>
-cd NotifyHub
 dotnet build
 dotnet run
 ```
 
 ---
 
-## 🧪 Sample Execution Flow
+## 🧪 Application Flow
 
 ```
 1. Add Notification
@@ -225,52 +193,55 @@ dotnet run
 3. Exit
 ```
 
-1. User creates notification  
-2. Model validation executed  
-3. Added to priority queue  
+### Execution Steps:
+
+1. User adds notification via menu  
+2. System validates input  
+3. Notification enters priority queue  
 4. Background workers process asynchronously  
-5. Status updated in real-time  
+5. Status updates in real-time  
+
+---
+
+## 🧰 Technologies Used
+
+- C#  
+- .NET 6+  
+- Collections Framework  
+- Multithreading  
+- Asynchronous Programming  
+- DataAnnotations  
+- Custom Validation Attributes  
 
 ---
 
 ## 📈 Scalability Considerations
 
-NotifyHub is designed with scalability in mind:
+- Asynchronous non-blocking architecture  
+- Independent task processing  
+- Thread-safe collections  
+- Priority-based scheduling  
 
-- Non-blocking asynchronous processing
-- Independent task lifecycle
-- Thread-safe collections
-- Priority scheduling
-- Extensible sender architecture
-
-Future improvements can easily integrate:
-
-- Database persistence
-- Distributed queue systems
-- REST API layer
-- Configurable worker pool sizing
+The system can scale to handle increasing notification volumes without degrading user experience.
 
 ---
 
-## 🛠 Technology Stack
+## 🎓 Academic & Concept Coverage
 
-- C#
-- .NET 6+
-- Task-based Asynchronous Pattern (TAP)
-- Collections Framework
-- Concurrent Collections
-- DataAnnotations
-- Custom Attributes
+This project demonstrates:
+
+- Core & Advanced OOP  
+- Concurrent Programming  
+- Async/Await Pattern  
+- Thread Safety & Synchronization  
+- Collections Framework  
+- Custom Attributes  
+- Exception Handling  
+- Design Patterns Implementation  
 
 ---
 
-# 🏁 Final Thoughts
-NotifyHub demonstrates how  .NET applications can leverage asynchronous programming and concurrent collections to build responsive, scalable backend systems.
+# 🏁 Final Summary
 
-It reflects strong understanding of:
-
-- Concurrency management
-- Clean architecture
-- Design patterns
-- Real-world system reliability
-- Production-oriented coding practices
+**NotifyHub** is a well-architected, scalable, and concurrent notification processing system built using modern .NET practices.  
+It effectively demonstrates real-world concurrency handling, priority scheduling, and dynamic behavior selection while maintaining clean architecture principles.
