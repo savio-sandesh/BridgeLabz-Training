@@ -51,15 +51,10 @@ namespace HealthClinic.Service
             using (SqlConnection con = DBConnection.GetConnection())
             {
                 string query = "SELECT * FROM Appointment";
-
-
                 SqlCommand cmd = new SqlCommand(query, con);
-
                 con.Open();
 
-
                 SqlDataReader reader = cmd.ExecuteReader();
-
 
                 while (reader.Read())
                 {
@@ -215,3 +210,48 @@ namespace HealthClinic.Service
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SQL Server returns rows, not Appointment objects.
+// Your C# program doesn't understand database rows directly. It understands objects.
+// So we convert:
+
+// Database Row
+//         ↓
+// Appointment Object
+// This process is called Object Mapping (or Data Mapping).
+// Read() moves the cursor one row forward
+
+
+
+// SQL Server returns data in the form of rows and columns, whereas C# applications work with objects. Therefore, we map each database row to an entity object, such as Appointment, so that the data can be easily accessed, passed between layers, and used according to object-oriented programming principles. This also keeps the service layer independent of the database representation
+
+
+
+// This code is used to retrieve multiple appointment records from the database and convert them into C# objects.
+
+// reader is a SqlDataReader object that contains the result set returned by the SQL query.
+
+// The Read() method moves the reader to the next row in the result set and returns true as long as there are rows available. That's why we use a while loop—to process every record one by one.
+
+// Inside the loop, I create a new Appointment object and map each database column to its corresponding property in the object. Since database values are returned as object, I convert them to the appropriate C# data types using methods like Convert.ToInt32(), Convert.ToDateTime(), and ToString().
+
+// After creating and populating the object, I add it to a List<Appointment>. When the loop finishes, the list contains all appointment records from the database, which can then be returned to the caller

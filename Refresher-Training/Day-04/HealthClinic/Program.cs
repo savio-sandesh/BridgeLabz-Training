@@ -33,14 +33,17 @@ namespace HealthClinic
             PatientMenu patientMenu =
                 new PatientMenu(patientService);
 
+            IDoctorService doctorService = new DoctorService();
 
+            DoctorMenu doctorMenu = new DoctorMenu(doctorService);
 
             // Creating MainMenu object.
             // MainMenu controls navigation between modules.
             MainMenu mainMenu =
                 new MainMenu(
                     patientMenu,
-                    appointmentMenu
+                    appointmentMenu,
+                    doctorMenu
                 );
 
 

@@ -9,19 +9,20 @@ namespace HealthClinic.Menu
         // Reference to Patient menu.
         private readonly PatientMenu patientMenu;
 
-
         // Reference to Appointment menu.
         private readonly AppointmentMenu appointmentMenu;
 
+        private readonly DoctorMenu doctorMenu;
 
         // Constructor injection.
         // MainMenu receives required module menus.
         public MainMenu(
             PatientMenu patientMenu,
-            AppointmentMenu appointmentMenu)
+            AppointmentMenu appointmentMenu, DoctorMenu doctorMenu)
         {
             this.patientMenu = patientMenu;
             this.appointmentMenu = appointmentMenu;
+            this.doctorMenu = doctorMenu;
         }
 
 
@@ -39,6 +40,7 @@ namespace HealthClinic.Menu
                 Console.WriteLine("===================================");
                 Console.WriteLine("1. Patient Management");
                 Console.WriteLine("2. Appointment Management");
+                Console.WriteLine("3. Doctor Management");
                 Console.WriteLine("0. Exit");
                 Console.WriteLine("===================================");
 
@@ -47,7 +49,7 @@ namespace HealthClinic.Menu
                 choice = Convert.ToInt32(Console.ReadLine());
 
 
-                switch(choice)
+                switch (choice)
                 {
                     case 1:
 
@@ -62,6 +64,9 @@ namespace HealthClinic.Menu
 
                         break;
 
+                    case 3:
+                        doctorMenu.ShowMenu();
+                        break;
 
                     case 0:
 
@@ -77,7 +82,7 @@ namespace HealthClinic.Menu
                 }
 
 
-            } while(choice != 0);
+            } while (choice != 0);
         }
     }
 }
