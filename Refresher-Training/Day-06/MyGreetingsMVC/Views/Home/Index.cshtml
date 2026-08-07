@@ -1,0 +1,17 @@
+﻿@model MyGreetingsMVC.Models.GreetingModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h2>Greeting Application</h2>
+
+<form asp-action="Greeting" method="post">
+
+    <label asp-for="Name"></label>
+
+    <input asp-for="Name" />
+
+    <button type="submit">Submit</button>
+
+</form>
