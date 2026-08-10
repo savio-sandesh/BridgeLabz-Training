@@ -1,0 +1,55 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Test results
+TestResults/
+*.trx
+
+# NuGet
+*.nupkg
+*.snupkg
+
+# Publish output
+publish/
+*.publishsettings
+
+# ASP.NET Core development certificates
+*.pfx
+
+# Local configuration / secrets
+appsettings.Local.json
+appsettings.*.Local.json
+secrets.json
+
+# Environment files
+.env
+.env.*
+
+# Database files
+*.mdf
+*.ldf
+
+# Temporary files
+*.tmp
+*.temp
