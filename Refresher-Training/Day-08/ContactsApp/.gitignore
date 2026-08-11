@@ -1,0 +1,57 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# .NET build files
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# Test results
+TestResults/
+*.trx
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Local settings
+appsettings.Development.json
+
+# User secrets
+secrets.json
+
+# Database files
+*.mdf
+*.ldf
+
+# Temporary files
+*.tmp
+*.temp
+
+# Postman local files
+.postman/
