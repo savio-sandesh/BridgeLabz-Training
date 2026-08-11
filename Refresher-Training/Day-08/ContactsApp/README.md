@@ -405,7 +405,7 @@ Install:
 # 1. Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone <https://shorturl.at/HQeAW>
 ```
 
 ---
@@ -468,7 +468,7 @@ dotnet run
 Application will start:
 
 ```
-http://localhost:<port>
+http://localhost:5179
 ```
 
 ---
