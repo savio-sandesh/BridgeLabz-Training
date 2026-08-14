@@ -1,0 +1,63 @@
+# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.userossc
+*.suo
+*.userprefs
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# Test results
+TestResults/
+*.trx
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# ASP.NET Core
+wwwroot/lib/
+
+# Entity Framework temporary files
+efbundle/
+
+# Local database files
+*.mdf
+*.ldf
+*.ndf
+
+# User-specific configuration
+appsettings.Local.json
+
+# Secrets
+secrets.json
+
+# Publish output
+publish/
+PublishOutput/
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
