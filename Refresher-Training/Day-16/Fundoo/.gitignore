@@ -1,0 +1,92 @@
+## .NET / ASP.NET Core / Visual Studio gitignore for Fundoo App
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio cache/options
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# EF Core migrations - KEEP these (do not ignore).
+# Migrations are source-controlled by design so the team shares the same DB schema history.
+# !RepositoryLayer/Migrations/
+
+# Secrets & environment-specific config
+appsettings.Development.json
+appsettings.Local.json
+appsettings.Production.json
+*.pfx
+secrets.json
+.env
+
+# User-specific launch settings (each dev may run on different ports/paths)
+launchSettings.json
+
+# Test results
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+*.coveragexml
+coverage/
+
+# Rider/ReSharper
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+
+# Build artifacts from dotnet publish
+publish/
+*.Publish.xml
+*.pubxml
+*.pubxml.user
+*.azurePubxml
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Crash dumps
+*.dmp
+
+# JetBrains Rider backup files
+*.bak
+
+# SQL Server local database files (if using LocalDB file-based DBs)
+*.mdf
+*.ldf
+*.ndf
