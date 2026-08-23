@@ -24,9 +24,9 @@ namespace BusinessLayer.Services
             {
                 var server = _configuration["SmtpSettings:Server"] ?? "smtp.gmail.com";
                 var port = int.Parse(_configuration["SmtpSettings:Port"] ?? "587");
-                var senderEmail = _configuration["SmtpSettings:SenderEmail"];
+                var senderEmail = _configuration["SmtpSettings:SenderEmail"] ?? throw new InvalidOperationException("SmtpSettings:SenderEmail is not configured");
                 var senderName = _configuration["SmtpSettings:SenderName"] ?? "Fundoo Support";
-                var password = _configuration["SmtpSettings:Password"];
+                var password = _configuration["SmtpSettings:Password"] ?? throw new InvalidOperationException("SmtpSettings:Password is not configured");
 
                 var email = new MimeMessage();
                 email.From.Add(new MailboxAddress(senderName, senderEmail));

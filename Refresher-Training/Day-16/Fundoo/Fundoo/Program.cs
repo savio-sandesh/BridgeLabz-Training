@@ -50,6 +50,8 @@ builder.Services.AddScoped<ITokenService, TokenService>();           // Business
 builder.Services.AddScoped<IEmailService, EmailService>();           // BusinessLayer (MailKit SMTP)
 builder.Services.AddScoped<INoteRepository, NoteRepository>();
 builder.Services.AddScoped<INoteService, NoteService>();
+builder.Services.AddScoped<ILabelRepository, LabelRepository>();
+builder.Services.AddScoped<ILabelService, LabelService>();
 
 
 // JWT Bearer authentication
