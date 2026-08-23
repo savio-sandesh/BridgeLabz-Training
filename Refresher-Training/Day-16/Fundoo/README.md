@@ -1,6 +1,6 @@
 # Fundoo Notes App
 
-A Google Keep–inspired note-taking backend built with ASP.NET Core Web API, following a layered (multi-project) architecture with JWT-based authentication.
+A Google Keep–inspired note-taking backend built with ASP.NET Core Web API, following a layered (multi-project) architecture with JWT-based authentication, Cloudinary media handling, label management, and automated MSTest unit test coverage.
 
 ---
 
@@ -13,6 +13,7 @@ A Google Keep–inspired note-taking backend built with ASP.NET Core Web API, fo
 - [Features Implemented](#features-implemented)
 - [Input Validation & Security Rules](#input-validation--security-rules)
 - [API Endpoints](#api-endpoints)
+- [Unit Testing (MSTest + Moq)](#unit-testing-mstest--moq)
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
 - [Database Migrations](#database-migrations)
@@ -22,7 +23,7 @@ A Google Keep–inspired note-taking backend built with ASP.NET Core Web API, fo
 
 ## Overview
 
-Fundoo Notes App is being built as a multi-day training project, progressively growing from a simple User Management module into a full microservices-based notes application (registration, notes CRUD, pinning/archiving, labels, reminders, and more). This README reflects progress as of the **User Management + Notes Core CRUD, Cloudinary Image Upload, Pin/Archive, Search, and Google Keep Trash Flow** milestone.
+Fundoo Notes App is being built as a multi-day training project, progressively growing from a simple User Management module into a full enterprise-grade notes application (registration, notes CRUD, pinning/archiving, labels/tags management, Cloudinary CDN uploads, trash lifecycle, and unit test suites). This README reflects progress as of the **User Management + Notes Core & Media + Lifecycle + Labels Management + MSTest Suite** milestone.
 
 ## Tech Stack
 
@@ -32,26 +33,28 @@ Fundoo Notes App is being built as a multi-day training project, progressively g
 | Web Framework | ASP.NET Core Web API |
 | ORM | Entity Framework Core 10 |
 | Database | SQL Server |
-| Authentication | JWT Bearer tokens |
+| Authentication | JWT Bearer tokens (HMAC-SHA256) |
 | Password Hashing | BCrypt.Net-Next |
 | Cloud Storage | Cloudinary (Image & Media uploads) |
 | Email Service | SMTP / MailKit |
+| Unit Testing | MSTest, Moq |
 | API Documentation | Swagger / Swashbuckle |
 
 ## Architecture
 
-The solution follows a **4-project layered architecture**, with each layer compiled as its own class library and explicit project references enforcing the dependency direction:
+The solution follows a **layered clean architecture**, with each layer compiled as its own class library and explicit project references enforcing the dependency direction:
 
 ```
 Fundoo (WebAPI)  →  BusinessLayer  →  RepositoryLayer  →  ModelLayer
+                              ↑
+                     FundooTests (MSTest)
 ```
 
-- **ModelLayer** — Entities and DTOs. No dependencies on any other layer.
-- **RepositoryLayer** — EF Core `DbContext` and data access (repositories). Depends only on ModelLayer.
-- **BusinessLayer** — Business logic, password hashing, JWT generation, Cloudinary media processing, and external service calls (e.g., SMTP email). Depends on RepositoryLayer and ModelLayer.
-- **Fundoo (WebAPI)** — Controllers, middleware pipeline, and dependency injection wiring. Depends on all three layers below it.
-
-This separation means the database technology, business rules, and HTTP layer can each evolve independently — and each layer can be unit tested in isolation by mocking the layer beneath it.
+- **ModelLayer** — Database entities (`User`, `Note`, `Label`, `NoteLabel`) and Request/Response DTOs.
+- **RepositoryLayer** — EF Core `AppDbContext`, database migrations, and repository implementations (`UserRepository`, `NoteRepository`, `LabelRepository`).
+- **BusinessLayer** — Business workflows, password hashing, JWT token generation, Cloudinary media processing, and label/note business rules.
+- **Fundoo (WebAPI)** — Controllers, route guards (`[Authorize]`), middleware pipeline, and DI registration.
+- **FundooTests** — Isolated automated unit tests using **MSTest** and **Moq** to test service-layer logic without hitting a real database.
 
 ## Project Structure
 
@@ -60,8 +63,8 @@ Fundoo/
 ├── Fundoo.slnx
 ├── README.md
 ├── Fundoo/                          # WebAPI host project
-│   ├── Fundoo.csproj
 │   ├── Controllers/
+│   │   ├── LabelsController.cs
 │   │   ├── NotesController.cs
 │   │   └── UserController.cs
 │   ├── Properties/
@@ -69,82 +72,70 @@ Fundoo/
 │   ├── Program.cs
 │   └── appsettings.json
 ├── ModelLayer/                      # Entities & DTOs
-│   ├── ModelLayer.csproj
 │   ├── DTOs/
+│   │   ├── LabelDTOs.cs
 │   │   ├── NoteDTOs.cs
 │   │   └── UserDTOs.cs
 │   └── Entities/
+│       ├── Label.cs
 │       ├── Note.cs
+│       ├── NoteLabel.cs
 │       └── User.cs
-├── RepositoryLayer/                 # Data access
-│   ├── RepositoryLayer.csproj
+├── RepositoryLayer/                 # Data access & EF Core
 │   ├── Data/
 │   │   └── AppDbContext.cs
 │   ├── Interfaces/
+│   │   ├── ILabelRepository.cs
 │   │   ├── INoteRepository.cs
 │   │   └── IUserRepository.cs
 │   ├── Migrations/
-│   │   ├── 20260816172110_InitialCreate.cs
-│   │   ├── 20260819163000_RenameArchieveToArchive.cs
-│   │   └── AppDbContextModelSnapshot.cs
 │   └── Repositories/
+│       ├── LabelRepository.cs
 │       ├── NoteRepository.cs
 │       └── UserRepository.cs
-└── BusinessLayer/                   # Business logic
-    ├── BusinessLayer.csproj
-    ├── Helpers/
-    │   ├── PasswordHasher.cs
-    │   └── TokenService.cs
-    ├── Interfaces/
-    │   ├── IEmailService.cs
-    │   ├── INoteService.cs
-    │   └── IUserService.cs
-    └── Services/
-        ├── EmailService.cs
-        ├── NoteService.cs
-        └── UserService.cs
+├── BusinessLayer/                   # Business logic
+│   ├── Helpers/
+│   │   ├── PasswordHasher.cs
+│   │   └── TokenService.cs
+│   ├── Interfaces/
+│   │   ├── IEmailService.cs
+│   │   ├── ILabelService.cs
+│   │   ├── INoteService.cs
+│   │   └── IUserService.cs
+│   └── Services/
+│       ├── EmailService.cs
+│       ├── LabelService.cs
+│       ├── NoteService.cs
+│       └── UserService.cs
+└── FundooTests/                     # Automated Unit Testing Suite
+    ├── NoteServiceTests.cs
+    ├── LabelServiceTests.cs
+    └── MSTestSettings.cs
 ```
 
 ## Features Implemented
 
-### User Management
-- User registration with duplicate email validation
-- Login with credential verification
-- Forgot password flow (generates a time-limited reset token sent via SMTP email)
-- Reset password flow (validates token and expiry before allowing reset)
-- Passwords are hashed with BCrypt — never stored or logged in plain text
-- Strict DTO model constraints and strong password validation
-
-### Authentication & Authorization
-- JWT Bearer authentication configured end-to-end (token issuance + validation)
-- Tokens are signed with HMAC-SHA256 and include user ID (`nameid`), email, and name as claims
-- `[Authorize]` attribute protecting user profile and all note operations
-- User isolation: Logged-in users can only view, retrieve, edit, and delete their own notes
-- Swagger UI configured with an **Authorize** button for testing protected routes directly
+### User Management & Security
+- User registration with duplicate email validation and regex-enforced strong passwords.
+- Login with BCrypt hash verification issuing signed HMAC-SHA256 JWT tokens.
+- Secure time-limited password reset workflow via SMTP email tokens.
+- User isolation: All operations strictly guarded and filtered by authenticated `UserId`.
 
 ### Notes Management & Media
-- **Create Note:** Create rich notes with Title, Description, and custom Background Color with automatic timestamps.
-- **Get All Active Notes:** Retrieve active notes belonging strictly to the authenticated user (excludes Trash & Archive, sorted by Pin status).
-- **Get Note by ID:** Fetch a single note by ID with user authorization validation.
-- **Update Note:** Modify title, description, color, reminder, pin, archive, and trash fields.
-- **Cloudinary Image Upload:** Dedicated endpoint allowing users to upload and attach images directly to notes using `IFormFile` stream and Cloudinary CDN storage.
+- **Rich Notes CRUD:** Create, read, update, and soft/hard delete notes.
+- **Cloudinary Integration:** Image uploading directly attached to notes via Cloudinary CDN.
+- **Pin & Archive Operations:** Pinning notes to top and archiving workflows (auto-unpins archived notes).
+- **Search & Filter:** Keyword-based searching across note titles and descriptions.
+- **Trash Lifecycle:** Complete soft delete (`Move to Trash`), `Restore`, `Delete Forever`, and `Empty Trash` workflows.
 
-### Pin, Archive & Search Modules
-- **Pin Toggle:** Pin/unpin notes to keep important notes at the top of the dashboard.
-- **Archive Flow:** Archive/unarchive notes (archiving automatically unpins the note).
-- **Archive View:** Dedicated endpoint to view all archived notes.
-- **Search & Filter:** Keyword-based searching against note titles and descriptions.
-
-### Google Keep Delete & Trash Lifecycle
-- **Move to Trash (Soft Delete):** Safely move notes to trash (`Trash = true`, `Pin = false`) without deleting database rows.
-- **Trash Bin View:** Dedicated endpoint to fetch all trashed notes for the logged-in user.
-- **Restore Note:** Restore notes from trash back to the active dashboard (`Trash = false`).
-- **Delete Forever (Single Hard Delete):** Permanently destroy a single note from the database.
-- **Empty Trash (Bulk Hard Delete):** Bulk delete all trashed notes belonging to the authenticated user in one operation.
+### Tags / Labels Management
+- **Master Label CRUD:** Create, view, update, and delete custom user labels.
+- **Many-to-Many Mapping:** Implemented normalized junction table (`NoteLabels`) preventing duplicate associations.
+- **Tag / Untag Notes:** Attach and detach labels to/from specific notes seamlessly.
+- **Filter by Label:** Fetch all active notes associated with a specific label.
+- **Fetch Note Labels:** Retrieve all attached labels for a specific note.
 
 ## Input Validation & Security Rules
-
-To ensure clean and safe input handling, DTO-level validations are enforced before requests hit the business layer:
 
 ### Email Format
 - **Rule:** Required field, validated against standard email conventions using `[EmailAddress]`.
@@ -158,14 +149,6 @@ To ensure clean and safe input handling, DTO-level validations are enforced befo
   - 1 Special character (`@$!%*?&#`)
   - **No whitespace/spaces** allowed
 - **Pattern:** `^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$`
-- **Applied On:** `RegisterRequest`, `ResetPasswordRequest`.
-
-### Infrastructure
-- Dependency Injection wired across all four layers (Scoped lifetimes applied appropriately)
-- CORS enabled for cross-origin frontend communication
-- SMTP Mail service configured for password recovery emails
-- Cloudinary SDK integration for external cloud asset handling
-- EF Core Code-First migrations against SQL Server
 
 ## API Endpoints
 
@@ -173,18 +156,18 @@ To ensure clean and safe input handling, DTO-level validations are enforced befo
 | Method | Route | Auth Required | Description |
 |---|---|---|---|
 | POST | `/api/v1/user/register` | No | Register a new user |
-| POST | `/api/v1/user/login` | No | Authenticate and receive a JWT |
+| POST | `/api/v1/user/login` | No | Authenticate and receive JWT |
 | POST | `/api/v1/user/forgot-password` | No | Request a password reset token |
-| POST | `/api/v1/user/reset-password` | No | Reset password using a valid token |
+| POST | `/api/v1/user/reset-password` | No | Reset password using token |
 
 ### Notes Endpoints
 | Method | Route | Auth Required | Description |
 |---|---|---|---|
 | POST | `/api/Notes` | **Yes** | Create a new note |
-| GET | `/api/Notes` | **Yes** | Get all active notes for authenticated user |
-| GET | `/api/Notes/{noteId}` | **Yes** | Get a specific note by ID |
+| GET | `/api/Notes` | **Yes** | Get all active notes for user |
+| GET | `/api/Notes/{noteId}` | **Yes** | Get specific note by ID |
 | PUT | `/api/Notes/{noteId}` | **Yes** | Update an existing note |
-| PUT | `/api/Notes/{noteId}/image` | **Yes** | Upload and attach an image via Cloudinary |
+| PUT | `/api/Notes/{noteId}/image` | **Yes** | Upload and attach image via Cloudinary |
 | PUT | `/api/Notes/{noteId}/pin` | **Yes** | Toggle Pin/Unpin status |
 | PUT | `/api/Notes/{noteId}/archive` | **Yes** | Toggle Archive/Unarchive status |
 | GET | `/api/Notes/archive` | **Yes** | Get all archived notes |
@@ -195,33 +178,68 @@ To ensure clean and safe input handling, DTO-level validations are enforced befo
 | DELETE | `/api/Notes/{noteId}/forever` | **Yes** | Permanently delete a single note |
 | DELETE | `/api/Notes/trash/empty` | **Yes** | Permanently delete all trashed notes |
 
+### Labels Endpoints
+| Method | Route | Auth Required | Description |
+|---|---|---|---|
+| POST | `/api/Labels` | **Yes** | Create a new custom label |
+| GET | `/api/Labels` | **Yes** | Get all labels created by user |
+| PUT | `/api/Labels/{labelId}` | **Yes** | Rename an existing label |
+| DELETE | `/api/Labels/{labelId}` | **Yes** | Delete a label and its mappings |
+| POST | `/api/Labels/note/{noteId}/attach/{labelId}` | **Yes** | Tag/attach a label to a note |
+| DELETE | `/api/Labels/note/{noteId}/detach/{labelId}` | **Yes** | Untag/detach a label from a note |
+| GET | `/api/Labels/note/{noteId}` | **Yes** | Get all labels attached to a note |
+| GET | `/api/Labels/{labelId}/notes` | **Yes** | Get all active notes mapped to a label |
+
+---
+
+## Unit Testing (MSTest + Moq)
+
+The application utilizes **MSTest** and **Moq** for automated unit testing, adhering to the **Arrange-Act-Assert (AAA)** pattern to ensure complete isolation from real databases and external network calls.
+
+### Running the Test Suite
+
+Execute the following command from the root solution folder:
+
+```bash
+dotnet test
+```
+
+### Coverage Highlights
+
+- **`NoteServiceTests`:** Tests note creation, retrieval by ID, edge-case null returns, and soft-delete trash operations.
+- **`LabelServiceTests`:** Tests master label creation and note-label attachment mappings.
+- **Dependency Isolation:** Repositories are stubbed using `Mock<T>` with argument matchers (`It.IsAny<T>()`) and behavior verification (`Times.Once`).
+
+---
+
 ## Getting Started
 
 ### Prerequisites
+
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
-- SQL Server (local instance, Express, or LocalDB)
+- SQL Server (Local instance, Express, or LocalDB)
 - Cloudinary Account (Free Tier)
 
-### Setup
+### Setup & Run
 
 ```bash
 # 1. Restore dependencies across all projects
 dotnet restore
 
-# 2. Apply EF Core migrations (creates the database & applies latest schemas)
+# 2. Apply EF Core database migrations
 dotnet ef database update --project RepositoryLayer --startup-project Fundoo
 
-# 3. Run the API
+# 3. Run the API host
 dotnet run --project Fundoo
 ```
 
-Swagger UI will be available at `http://localhost:5000/swagger/index.html` when running in the Development environment.
+Swagger UI will be accessible at: `http://localhost:5000/swagger/index.html` (in Development mode).
 
-> **Note:** If Swagger shows a blank page, ensure `ASPNETCORE_ENVIRONMENT` is set to `Development` — Swagger middleware is intentionally disabled outside of Development.
+---
 
 ## Configuration
 
-Connection string, JWT settings, SMTP, and Cloudinary keys live in `Fundoo/appsettings.json`:
+Connection strings, JWT secrets, SMTP credentials, and Cloudinary API keys are managed in `Fundoo/appsettings.json`:
 
 ```json
 {
@@ -249,35 +267,29 @@ Connection string, JWT settings, SMTP, and Cloudinary keys live in `Fundoo/appse
 }
 ```
 
-- Update `DefaultConnection` to match your SQL Server instance name.
-- Add your active Cloudinary credentials under `CloudinarySettings`.
-- Generate a random `Jwt:Key` (minimum 32 characters, required for HMAC-SHA256 signing) rather than using a placeholder value.
+---
 
 ## Database Migrations
 
-The `DbContext` lives in `RepositoryLayer`, but configuration (connection string) lives in `Fundoo`, so migration commands must specify both projects and be run from the solution root:
+Run database migrations from the solution root:
 
 ```bash
-# Create a new migration after changing an entity
+# Add a new migration
 dotnet ef migrations add <MigrationName> --project RepositoryLayer --startup-project Fundoo
 
-# Apply pending migrations to the database
+# Apply migrations to database
 dotnet ef database update --project RepositoryLayer --startup-project Fundoo
 ```
 
+---
+
 ## Testing the API
 
-1. Run the app and open Swagger UI or Postman.
-2. `POST /api/v1/user/register` with `Name`, `Email`, and `Password`.
-3. `POST /api/v1/user/login` with registered credentials — copy the token from the response.
-4. Set the Authorization Header as `Bearer <token>` (or paste into Swagger's Authorize modal).
-5. `POST /api/Notes` with JSON body:
-   ```json
-   { "title": "My Note", "description": "Note content", "backgroundcolor": "#FFFFFF" }
-   ```
-6. `GET /api/Notes` to retrieve the active notes list.
-7. `PUT /api/Notes/{noteId}/pin` or `PUT /api/Notes/{noteId}/archive` to toggle note state.
-8. `PUT /api/Notes/{noteId}/image` using form-data with key `image` (File) to upload an image to Cloudinary.
-9. `PUT /api/Notes/{noteId}/trash` to move a note to the Trash bin (verify via `GET /api/Notes/trash`).
-10. `PUT /api/Notes/{noteId}/restore` to restore, or `DELETE /api/Notes/{noteId}/forever` to permanently remove.
-11. `DELETE /api/Notes/trash/empty` to permanently delete all trashed notes at once.
+1. `POST /api/v1/user/register` and `POST /api/v1/user/login` to obtain your JWT token.
+2. Click **Authorize** in Swagger UI and input your token.
+3. Create notes using `POST /api/Notes`.
+4. Create labels using `POST /api/Labels`.
+5. Attach labels to notes using `POST /api/Labels/note/{noteId}/attach/{labelId}`.
+6. Verify labeled notes via `GET /api/Labels/{labelId}/notes`.
+7. Upload images to notes using `PUT /api/Notes/{noteId}/image` (multipart form-data).
+8. Soft-delete and manage the trash bin via `/api/Notes/{noteId}/trash` and `/api/Notes/trash`.
