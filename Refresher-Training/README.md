@@ -1,8 +1,8 @@
 # 📘 .NET Full-Stack Developer — Refresher Program Log
 
-**Duration:** Day 1 – Day 15 (In Progress)
+**Duration:** Day 1 – Day 17 (In Progress)
 **Track:** Database Programming → Backend Development (ASP.NET Core) → Backend with Entity Framework → Advanced Backend Architecture & Enterprise Modules
-**Stack:** MS SQL Server, T-SQL, ADO.NET, ASP.NET Core, WebAPI, MVC, Minimal APIs, Entity Framework Core, LINQ, JWT, BCrypt, Cloudinary, SMTP MailKit, Swagger, Postman, C#
+**Stack:** MS SQL Server, T-SQL, ADO.NET, ASP.NET Core, WebAPI, MVC, Minimal APIs, Entity Framework Core, LINQ, JWT, BCrypt, ASP.NET Identity, Cloudinary, SMTP MailKit, RabbitMQ, MSTest, NLog, StyleCop, Swagger, Postman, C#
 **Repository:** [BridgeLabz-Training (Refresher-Training branch)](https://github.com/savio-sandesh/BridgeLabz-Training/tree/Refresher-Training/Refresher-Training)
 
 ---
@@ -18,11 +18,12 @@ This log documents the technical topics covered and hands-on deliverables comple
 | Stage 3 | Day 9 – Day 10 | Backend with Entity Framework — ORM, EF Core, LINQ to Entities |
 | Stage 4 | Day 11 – Day 12 | Enterprise Service Design — Multi-Layer Architecture, Dependency Injection Scopes, Logging & Postman Testing |
 | Stage 5 | Day 13 – Day 15 | Advanced Backend Development — JWT Security, Secure Notes CRUD, Cloudinary Integration, Organization & Lifecycle Modules |
+| Stage 6 | Day 16 – Day 17 | Advanced Backend Development — Pub-Sub Pattern, Unit Testing, Logging, API Docs, ASP.NET Identity, WebAPI Filters, Session Management |
 
 **Primary projects delivered:**
 - Health Clinic Management App (console-based, MS SQL Server + ADO.NET)
 - Address Book App (ASP.NET Core WebAPI, MS SQL Server + Entity Framework)
-- **Fundoo Notes App** (4-Layer ASP.NET Core WebAPI, Clean Architecture, JWT Authentication, Cloudinary CDN, Pin/Archive/Trash/Search Lifecycle)
+- **Fundoo Notes App** (4-Layer ASP.NET Core WebAPI, Clean Architecture, JWT Authentication, Cloudinary CDN, Pin/Archive/Trash/Search Lifecycle, Tags/Labels, Reminders & Notifications via RabbitMQ)
 
 **Additional projects delivered:** Greetings App (ASP.NET Core MVC), Contacts App (ASP.NET Core Minimal APIs)
 
@@ -241,14 +242,47 @@ This log documents the technical topics covered and hands-on deliverables comple
 
 ---
 
+### Day 16 — Pub-Sub Pattern, Unit Testing, Logging & API Documentation
+**Stage:** Advance Backend Development
+
+**Key Concepts:**
+- Publish-Subscribe (Pub-Sub) pattern for event-driven communication
+- Unit testing fundamentals and implementation using MSTest
+- Structured application logging using NLog
+- API testing with Postman; API documentation generation with Swagger
+
+**Deliverables — Fundoo Notes App (Tags / Labels Management Module):**
+- Implemented the Tags / Labels Management module for organizing and categorizing notes
+- Authored MSTest unit test cases covering existing service and controller logic
+- Documented existing API endpoints using Swagger
+
+---
+
+### Day 17 — ASP.NET Identity, WebAPI Filters, StyleCop & Session Management
+**Stage:** Advance Backend Development
+
+**Key Concepts:**
+- ASP.NET Identity — user identity management framework
+- WebAPI Filters — cross-cutting request/response interception
+- StyleCop — enforcing consistent code-style and coding standards
+- Session Management in ASP.NET Core
+
+**Deliverables — Fundoo Notes App (Reminder & Notification Module):**
+- Implemented the Reminder & Notification module for scheduled note alerts
+- Integrated **RabbitMQ** for asynchronous, non-blocking background message processing (queue-based reminder dispatch)
+
+---
+
 ## 🧰 Technical Skills Acquired
 
 - **Database Design & Architecture:** ER modeling, normalization (1NF–BCNF), indexing strategies, EF Core Code-First migrations
 - **T-SQL & Data Access:** DDL, DML, joins, stored procedures, triggers, ADO.NET, Repository Pattern
 - **Backend Frameworks:** ASP.NET Core WebAPI, Minimal APIs, MVC, 4-Project Clean Layered Architecture
-- **Security & Identity:** JWT token generation/validation, claims authorization (`[Authorize]`), BCrypt password hashing
-- **Cloud & External Services:** Cloudinary Media API integration, SMTP / MailKit email delivery
+- **Security & Identity:** JWT token generation/validation, claims authorization (`[Authorize]`), BCrypt password hashing, ASP.NET Identity
+- **Cloud & External Services:** Cloudinary Media API integration, SMTP / MailKit email delivery, RabbitMQ message queuing
 - **Querying & ORM:** Entity Framework Core, LINQ to Entities, state filtering
+- **Architecture & Patterns:** Pub-Sub (event-driven) pattern, WebAPI Filters, Session Management
+- **Quality & Testing:** Unit Testing with MSTest, Logging with NLog, StyleCop code-quality enforcement
 - **Testing & Tools:** Swagger UI, Postman, Git version control
 
 ---
@@ -261,6 +295,6 @@ This log documents the technical topics covered and hands-on deliverables comple
 | Greetings App | Web Application | ASP.NET Core MVC / WebAPI | ✅ Completed |
 | Contacts App | Backend API | ASP.NET Core Minimal APIs, MS SQL Server, Postman (testing) | ✅ Completed |
 | Address Book App | Backend API | ASP.NET Core WebAPI, MS SQL Server, Entity Framework, LINQ | ✅ Completed |
-| **Fundoo Notes App** | Enterprise Web API | ASP.NET Core, EF Core, JWT, BCrypt, Cloudinary, SQL Server | ✅ Day 15 Milestone Completed |
+| **Fundoo Notes App** | Enterprise Web API | ASP.NET Core, EF Core, JWT, BCrypt, Cloudinary, RabbitMQ, MSTest, NLog, Swagger, SQL Server | 🔄 Day 17 Milestone Completed |
 
 ---
