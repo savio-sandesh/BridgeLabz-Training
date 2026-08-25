@@ -1,6 +1,6 @@
 # Fundoo Notes App
 
-A Google Keep–inspired note-taking backend built with ASP.NET Core Web API, following a layered (multi-project) architecture with JWT-based authentication, Cloudinary media handling, label management, and automated MSTest unit test coverage.
+A Google Keep–inspired note-taking backend built with ASP.NET Core Web API, following a layered (multi-project) architecture with JWT-based authentication, Cloudinary media handling, label management, RabbitMQ-driven reminders, and automated MSTest unit test coverage.
 
 ---
 
@@ -11,19 +11,20 @@ A Google Keep–inspired note-taking backend built with ASP.NET Core Web API, fo
 - [Architecture](#architecture)
 - [Project Structure](#project-structure)
 - [Features Implemented](#features-implemented)
+- [Asynchronous Architecture (RabbitMQ)](#asynchronous-architecture-rabbitmq)
 - [Input Validation & Security Rules](#input-validation--security-rules)
 - [API Endpoints](#api-endpoints)
 - [Unit Testing (MSTest + Moq)](#unit-testing-mstest--moq)
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
 - [Database Migrations](#database-migrations)
-- [Testing the API](#testing-the-api)
+- [Testing the API (Step-by-Step Manual Flow)](#testing-the-api-step-by-step-manual-flow)
 
 ---
 
 ## Overview
 
-Fundoo Notes App is being built as a multi-day training project, progressively growing from a simple User Management module into a full enterprise-grade notes application (registration, notes CRUD, pinning/archiving, labels/tags management, Cloudinary CDN uploads, trash lifecycle, and unit test suites). This README reflects progress as of the **User Management + Notes Core & Media + Lifecycle + Labels Management + MSTest Suite** milestone.
+Fundoo Notes App is being built as a multi-day training project, progressively growing from a simple User Management module into a full enterprise-grade notes application (registration, notes CRUD, pinning/archiving, labels/tags management, Cloudinary CDN uploads, RabbitMQ-based reminders, trash lifecycle, and unit test suites). This README reflects progress as of the **User Management + Notes Core & Media + Lifecycle + Labels Management + Reminders (RabbitMQ) + MSTest Suite** milestone.
 
 ## Tech Stack
 
@@ -37,6 +38,8 @@ Fundoo Notes App is being built as a multi-day training project, progressively g
 | Password Hashing | BCrypt.Net-Next |
 | Cloud Storage | Cloudinary (Image & Media uploads) |
 | Email Service | SMTP / MailKit |
+| Message Broker | RabbitMQ / CloudAMQP (`RabbitMQ.Client`) |
+| Background Processing | .NET `BackgroundService` (`IHostedService`) |
 | Unit Testing | MSTest, Moq |
 | API Documentation | Swagger / Swashbuckle |
 
@@ -45,16 +48,20 @@ Fundoo Notes App is being built as a multi-day training project, progressively g
 The solution follows a **layered clean architecture**, with each layer compiled as its own class library and explicit project references enforcing the dependency direction:
 
 ```
-Fundoo (WebAPI)  →  BusinessLayer  →  RepositoryLayer  →  ModelLayer
-                              ↑
-                     FundooTests (MSTest)
+Fundoo (WebAPI Host)  →  BusinessLayer  →  RepositoryLayer  →  ModelLayer
+         │                     │
+         ▼                     ▼
+[BackgroundService]    [IRabbitMqProducer] ──► [RabbitMQ / CloudAMQP Queue]
+         ▲                                                │
+         └──────────────── (Async Consumer) ──────────────┘
 ```
 
 - **ModelLayer** — Database entities (`User`, `Note`, `Label`, `NoteLabel`) and Request/Response DTOs.
 - **RepositoryLayer** — EF Core `AppDbContext`, database migrations, and repository implementations (`UserRepository`, `NoteRepository`, `LabelRepository`).
-- **BusinessLayer** — Business workflows, password hashing, JWT token generation, Cloudinary media processing, and label/note business rules.
-- **Fundoo (WebAPI)** — Controllers, route guards (`[Authorize]`), middleware pipeline, and DI registration.
+- **BusinessLayer** — Business workflows, password hashing, JWT token generation, Cloudinary media processing, `IRabbitMqProducer`/`RabbitMqProducer` publishing logic, and label/note business rules.
+- **Fundoo (WebAPI Host)** — Controllers, route guards (`[Authorize]`), middleware pipeline, DI registration, and the `ReminderNotificationConsumer` `BackgroundService` (`IHostedService`) that listens for and consumes queued reminder events.
 - **FundooTests** — Isolated automated unit tests using **MSTest** and **Moq** to test service-layer logic without hitting a real database.
+- **RabbitMQ / CloudAMQP Queue** — Decouples reminder notification delivery from the request/response cycle. `RabbitMqProducer` publishes reminder events to the queue from the API request path; the `ReminderNotificationConsumer` background worker consumes them asynchronously and triggers the SMTP email send, so the API responds immediately without waiting on email delivery.
 
 ## Project Structure
 
@@ -62,7 +69,9 @@ Fundoo (WebAPI)  →  BusinessLayer  →  RepositoryLayer  →  ModelLayer
 Fundoo/
 ├── Fundoo.slnx
 ├── README.md
-├── Fundoo/                          # WebAPI host project
+├── Fundoo/                          # WebAPI host & Background Services
+│   ├── BackgroundServices/
+│   │   └── ReminderNotificationConsumer.cs
 │   ├── Controllers/
 │   │   ├── LabelsController.cs
 │   │   ├── NotesController.cs
@@ -75,6 +84,7 @@ Fundoo/
 │   ├── DTOs/
 │   │   ├── LabelDTOs.cs
 │   │   ├── NoteDTOs.cs
+│   │   ├── ReminderDTOs.cs
 │   │   └── UserDTOs.cs
 │   └── Entities/
 │       ├── Label.cs
@@ -101,11 +111,13 @@ Fundoo/
 │   │   ├── IEmailService.cs
 │   │   ├── ILabelService.cs
 │   │   ├── INoteService.cs
+│   │   ├── IRabbitMqProducer.cs
 │   │   └── IUserService.cs
 │   └── Services/
 │       ├── EmailService.cs
 │       ├── LabelService.cs
 │       ├── NoteService.cs
+│       ├── RabbitMqProducer.cs
 │       └── UserService.cs
 └── FundooTests/                     # Automated Unit Testing Suite
     ├── NoteServiceTests.cs
@@ -119,7 +131,6 @@ Fundoo/
 - User registration with duplicate email validation and regex-enforced strong passwords.
 - Login with BCrypt hash verification issuing signed HMAC-SHA256 JWT tokens.
 - Secure time-limited password reset workflow via SMTP email tokens.
-- Scheduled reminder notifications delivered through RabbitMQ and SMTP email.
 - User isolation: All operations strictly guarded and filtered by authenticated `UserId`.
 
 ### Notes Management & Media
@@ -135,6 +146,20 @@ Fundoo/
 - **Tag / Untag Notes:** Attach and detach labels to/from specific notes seamlessly.
 - **Filter by Label:** Fetch all active notes associated with a specific label.
 - **Fetch Note Labels:** Retrieve all attached labels for a specific note.
+
+### Reminders & RabbitMQ Asynchronous Notifications (Day 17)
+- **Reminder Operations:** Set, update, clear, and view notes with active reminder timestamps.
+- **Decoupled Architecture:** When a reminder is set, the API does not block for email delivery. It publishes an event payload to RabbitMQ in ~3 ms.
+- **Background Hosted Consumer:** A background worker (`ReminderNotificationConsumer`) continuously listens to the message queue, acknowledges processed payloads, and triggers SMTP reminder notifications asynchronously.
+
+## Asynchronous Architecture (RabbitMQ)
+
+### Event Flow:
+1. Client calls `PUT /api/Notes/{id}/reminder`
+2. `NoteService` updates SQL Server timestamp
+3. `RabbitMqProducer` publishes `ReminderNotificationMessage` to `reminder_notifications_queue`
+4. API immediately returns `200 OK` (Non-blocking)
+5. `BackgroundService` consumes message and sends SMTP Email asynchronously
 
 ## Input Validation & Security Rules
 
@@ -173,6 +198,9 @@ Fundoo/
 | PUT | `/api/Notes/{noteId}/archive` | **Yes** | Toggle Archive/Unarchive status |
 | GET | `/api/Notes/archive` | **Yes** | Get all archived notes |
 | GET | `/api/Notes/search?keyword={text}` | **Yes** | Search notes by title or description |
+| PUT | `/api/Notes/{noteId}/reminder` | **Yes** | Set a reminder timestamp on a note (async via RabbitMQ) |
+| GET | `/api/Notes/reminders` | **Yes** | Get all notes with upcoming reminders |
+| DELETE | `/api/Notes/{noteId}/reminder` | **Yes** | Remove a note's reminder |
 | PUT | `/api/Notes/{noteId}/trash` | **Yes** | Move note to Trash (Soft Delete) |
 | PUT | `/api/Notes/{noteId}/restore` | **Yes** | Restore note from Trash |
 | GET | `/api/Notes/trash` | **Yes** | Get all trashed notes |
@@ -220,6 +248,7 @@ dotnet test
 - [.NET 10 SDK](https://dotnet.microsoft.com/download)
 - SQL Server (Local instance, Express, or LocalDB)
 - Cloudinary Account (Free Tier)
+- CloudAMQP Instance (Free Tier) or Local RabbitMQ / Docker
 
 ### Setup & Run
 
@@ -246,6 +275,9 @@ Connection strings, JWT secrets, SMTP credentials, and Cloudinary API keys are m
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=localhost\\SQLEXPRESS;Database=FundooNotesDb;Integrated Security=true;TrustServerCertificate=True;"
+  },
+  "RabbitMQ": {
+    "Uri": "amqps://<user>:<password>@<host>.cloudamqp.com/<vhost>"
   },
   "SmtpSettings": {
     "Server": "smtp.gmail.com",
@@ -284,13 +316,41 @@ dotnet ef database update --project RepositoryLayer --startup-project Fundoo
 
 ---
 
-## Testing the API
+## Testing the API (Step-by-Step Manual Flow)
 
-1. `POST /api/v1/user/register` and `POST /api/v1/user/login` to obtain your JWT token.
-2. Click **Authorize** in Swagger UI and input your token.
-3. Create notes using `POST /api/Notes`.
-4. Create labels using `POST /api/Labels`.
-5. Attach labels to notes using `POST /api/Labels/note/{noteId}/attach/{labelId}`.
-6. Verify labeled notes via `GET /api/Labels/{labelId}/notes`.
-7. Upload images to notes using `PUT /api/Notes/{noteId}/image` (multipart form-data).
-8. Soft-delete and manage the trash bin via `/api/Notes/{noteId}/trash` and `/api/Notes/trash`.
+Follow this end-to-end sequence in Swagger UI or Postman to test the full application workflow:
+
+### 1. Authentication Flow
+1. **Register:** Send `POST /api/v1/user/register` with `name`, `email`, and a strong `password`.
+2. **Login:** Send `POST /api/v1/user/login` with your credentials. Copy the `jwtToken` from the response.
+3. **Authorize:** Click the green **Authorize** button in Swagger UI, enter `Bearer <your_jwt_token>`, and click **Authorize**.
+
+### 2. Core Notes Operations
+4. **Create Note:** Send `POST /api/Notes` with `{ "title": "Meeting Notes", "description": "Discuss architecture", "backgroundcolor": "#FFE4C4" }`. Note down the returned `noteId`.
+5. **Get Active Notes:** Send `GET /api/Notes` to confirm the created note appears in your active list.
+6. **Update Note:** Send `PUT /api/Notes/{noteId}` to edit the title, description, or color.
+7. **Pin / Archive:** Test `PUT /api/Notes/{noteId}/pin` to toggle pin status and `PUT /api/Notes/{noteId}/archive` to archive the note.
+
+### 3. Media Upload (Cloudinary)
+8. **Attach Image:** Send `PUT /api/Notes/{noteId}/image` using `multipart/form-data` with key `image` (upload any image file) to verify Cloudinary upload.
+
+### 4. Tags / Labels Management
+9. **Create Label:** Send `POST /api/Labels` with `{ "labelName": "Work" }`. Note down the `labelId`.
+10. **Tag Note:** Send `POST /api/Labels/note/{noteId}/attach/{labelId}` to link the label to your note.
+11. **Filter by Label:** Send `GET /api/Labels/{labelId}/notes` to verify only notes with this tag are returned.
+12. **Untag Note:** Send `DELETE /api/Labels/note/{noteId}/detach/{labelId}` to remove the mapping.
+
+### 5. Reminders & RabbitMQ Asynchronous Processing
+13. **Set Reminder:** Send `PUT /api/Notes/{noteId}/reminder` with `{ "reminder": "2026-08-30T18:00:00Z" }`.
+14. **Verify RabbitMQ Queue:** Check your terminal output to verify that:
+    - The API returned `200 OK` instantly (non-blocking).
+    - `RabbitMqProducer` published the event to `reminder_notifications_queue`.
+    - `ReminderNotificationConsumer` picked up the message and triggered the background email notification.
+15. **Get Reminders:** Send `GET /api/Notes/reminders` to view all notes with upcoming reminders.
+16. **Remove Reminder:** Send `DELETE /api/Notes/{noteId}/reminder` to clear the reminder timestamp.
+
+### 6. Trash & Permanent Delete Lifecycle
+17. **Soft Delete:** Send `PUT /api/Notes/{noteId}/trash` to move the note to trash.
+18. **View Trash:** Send `GET /api/Notes/trash` to confirm the note is in the trash bin (it will no longer appear in `GET /api/Notes`).
+19. **Restore Note:** Send `PUT /api/Notes/{noteId}/restore` to move it back to active notes.
+20. **Hard Delete:** Send `DELETE /api/Notes/{noteId}/forever` to permanently destroy the note, or `DELETE /api/Notes/trash/empty` to wipe out all trashed notes.
